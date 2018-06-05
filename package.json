@@ -5800,7 +5800,7 @@
             "resolved": "https://registry.npmjs.org/npm/-/npm-6.0.0.tgz",
             "version": "6.0.0"
         },
-        "pushbots-cordova-plugin": "^1.5.13"
+        "onesignal-cordova-plugin": "^2.4.1"
     },
     "cordova": {
         "plugins": {
@@ -5818,7 +5818,7 @@
             "cordova-plugin-whitelist": {},
             "cordova-plugin-otp-auto-verification": {},
             "cordova-plugin-compat": {},
-            "pushbots-cordova-plugin": {}
+            "onesignal-cordova-plugin": {}
         },
         "platforms": [
             "android"

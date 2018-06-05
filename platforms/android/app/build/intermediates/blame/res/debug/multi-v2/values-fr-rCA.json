@@ -4,6 +4,23 @@
             "outputFile": "C:\\xampp\\htdocs\\celcabsapp\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-fr-rCA\\values-fr-rCA.xml",
             "map": [
                 {
+                    "source": "C:\\Users\\sky\\.gradle\\caches\\transforms-1\\files-1.1\\firebase-messaging-12.0.1.aar\\eb0ee3ed453bc1da8c064e8ae051c50f\\res\\values-fr-rCA\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "209",
+                        "endColumns": "100",
+                        "endOffsets": "309"
+                    },
+                    "to": {
+                        "startLines": "20",
+                        "startColumns": "4",
+                        "startOffsets": "3006",
+                        "endColumns": "104",
+                        "endOffsets": "3106"
+                    }
+                },
+                {
                     "source": "C:\\Users\\sky\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\0cbdae7dd850a7f6bbff4597717692d1\\res\\values-fr-rCA\\values-fr-rCA.xml",
                     "from": {
                         "startLines": "2",
@@ -15,26 +32,9 @@
                     "to": {
                         "startLines": "21",
                         "startColumns": "4",
-                        "startOffsets": "3108",
+                        "startOffsets": "3111",
                         "endColumns": "100",
-                        "endOffsets": "3204"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\sky\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-gcm-12.0.1.aar\\c789c0db666d78ecaa32e69b690466ae\\res\\values-fr-rCA\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "196",
-                        "endColumns": "97",
-                        "endOffsets": "293"
-                    },
-                    "to": {
-                        "startLines": "20",
-                        "startColumns": "4",
-                        "startOffsets": "3006",
-                        "endColumns": "101",
-                        "endOffsets": "3103"
+                        "endOffsets": "3207"
                     }
                 },
                 {

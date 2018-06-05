@@ -15,9 +15,9 @@
                     "to": {
                         "startLines": "21",
                         "startColumns": "4",
-                        "startOffsets": "2962",
+                        "startOffsets": "2965",
                         "endColumns": "100",
-                        "endOffsets": "3058"
+                        "endOffsets": "3061"
                     }
                 },
                 {
@@ -38,23 +38,6 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\sky\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-gcm-12.0.1.aar\\c789c0db666d78ecaa32e69b690466ae\\res\\values-pa\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "192",
-                        "endColumns": "96",
-                        "endOffsets": "288"
-                    },
-                    "to": {
-                        "startLines": "20",
-                        "startColumns": "4",
-                        "startOffsets": "2861",
-                        "endColumns": "100",
-                        "endOffsets": "2957"
-                    }
-                },
-                {
                     "source": "C:\\Users\\sky\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-12.0.1.aar\\1230e0fe176c0b08459415385a7ed0b8\\res\\values-pa\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
@@ -69,6 +52,23 @@
                         "startOffsets": "105,214,419,551,662,868,999,1142,1485,1706,1817,2021,2155,2367,2558,2654,2750",
                         "endColumns": "108,204,131,110,205,130,142,132,220,110,203,133,211,190,95,95,110",
                         "endOffsets": "209,414,546,657,863,994,1137,1270,1701,1812,2016,2150,2362,2553,2649,2745,2856"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\sky\\.gradle\\caches\\transforms-1\\files-1.1\\firebase-messaging-12.0.1.aar\\eb0ee3ed453bc1da8c064e8ae051c50f\\res\\values-pa\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "205",
+                        "endColumns": "99",
+                        "endOffsets": "304"
+                    },
+                    "to": {
+                        "startLines": "20",
+                        "startColumns": "4",
+                        "startOffsets": "2861",
+                        "endColumns": "103",
+                        "endOffsets": "2960"
                     }
                 }
             ]

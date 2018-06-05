@@ -31,7 +31,7 @@ var mainView = app.views.create('.view-main');
 });*/
 
 $( document ).ready(function() {  
-    //document.addEventListener("deviceready", checkStorage, false); 
+    document.addEventListener("deviceready", checkStorage, false); 
     document.addEventListener("backbutton", onBackKeyDown, false);
     // friz_fun();
 });
@@ -110,15 +110,23 @@ window.plugins.PushbotsPlugin.on("notification:clicked", function(data){
    checkConnection();
    //alert("in checkStorage func");
     var value = window.localStorage.getItem("session_mobilenum");
-    PushbotsPlugin.initialize("5b16304a1db2dc7d2e53fd2c");
-   if(value==null) 
-   {
-     //mainView.loadPage("index.html");
-     app.router.navigate('/index/');
-   }else{
-     //mainView.loadPage("bookride.html");
-     app.router.navigate('/ridehistory/');
-   }
+    //PushbotsPlugin.initialize("5b0548471db2dc33d672ae79");
+    var notificationOpenedCallback = function(jsonData) {
+    console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+  };
+OneSignal.setLogLevel(OneSignal.LOG_LEVEL.DEBUG, OneSignal.LOG_LEVEL.DEBUG);
+  window.plugins.OneSignal.startInit("498575e0-f2cf-4f27-bba6-48b4c0e1e95e","898094326128")
+    .handleNotificationOpened(notificationOpenedCallback)
+    .endInit();
+
+    if(value==null) 
+    {
+      //mainView.loadPage("index.html");
+      app.router.navigate('/index/');
+    }else{
+      //mainView.loadPage("bookride.html");
+      app.router.navigate('/ridehistory/');
+    }
 }
 // --------------------------- C H E C K  I N T E R N E T  C O N N E C T I O N --------------------- //
 function checkConnection() {

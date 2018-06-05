@@ -110,15 +110,15 @@ window.plugins.PushbotsPlugin.on("notification:clicked", function(data){
    checkConnection();
    //alert("in checkStorage func");
     var value = window.localStorage.getItem("session_mobilenum");
-
-   if(value==null) 
-   {
-     //mainView.loadPage("index.html");
-     app.router.navigate('/index/');
-   }else{
-     //mainView.loadPage("bookride.html");
-     app.router.navigate('/ridehistory/');
-   }
+    PushbotsPlugin.initialize("5b0548471db2dc33d672ae79");
+    if(value==null) 
+    {
+      //mainView.loadPage("index.html");
+      app.router.navigate('/index/');
+    }else{
+      //mainView.loadPage("bookride.html");
+      app.router.navigate('/ridehistory/');
+    }
 }
 // --------------------------- C H E C K  I N T E R N E T  C O N N E C T I O N --------------------- //
 function checkConnection() {

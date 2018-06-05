@@ -43,7 +43,7 @@
     "cordova-plugin-otp-auto-verification": {
       "PACKAGE_NAME": "com.phonegap.celcabs"
     },
-    "pushbots-cordova-plugin": {
+    "onesignal-cordova-plugin": {
       "PACKAGE_NAME": "com.phonegap.celcabs"
     }
   },

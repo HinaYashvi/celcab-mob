@@ -74,13 +74,13 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\sky\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-gcm-12.0.1.aar\\c789c0db666d78ecaa32e69b690466ae\\res\\values\\values.xml",
+                    "source": "C:\\Users\\sky\\.gradle\\caches\\transforms-1\\files-1.1\\firebase-messaging-12.0.1.aar\\eb0ee3ed453bc1da8c064e8ae051c50f\\res\\values\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
-                        "startOffsets": "163",
+                        "startOffsets": "176",
                         "endColumns": "77",
-                        "endOffsets": "240"
+                        "endOffsets": "253"
                     },
                     "to": {
                         "startLines": "103",
