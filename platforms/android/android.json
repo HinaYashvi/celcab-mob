@@ -64,8 +64,7 @@
               "xml": "<feature name=\"OneSignalPush\"><param name=\"android-package\" value=\"com.plugin.gcm.OneSignalPush\" /></feature>",
               "count": 1
             }
-          ],
-          "/widget": []
+          ]
         }
       },
       "AndroidManifest.xml": {
