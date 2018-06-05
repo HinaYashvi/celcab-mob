@@ -1,0 +1,100 @@
+<div class="page" data-name="signup">
+  <div class="navbar titleclr no-hairline">
+    <div class="navbar-inner sliding">
+      <div class="left">
+        <a href="#" class="link back">
+          <i class="f7-icons color-white">arrow_left</i>
+          <span class="ios-only">Back</span>
+        </a>
+      </div>
+      <div class="title letterspace">NEW REGISTRATION</div>
+    </div>
+  </div>
+  <div class="page-content">   
+    <div class="block block-strong no-hairlines">
+      <form class="signupForm" id="signupForm">
+      <div class="row center">
+        <div class="col-100 tablet-33">
+            <!--a href="#" class="button mt-5" id="scan">Scan QR Code</a-->
+            <center><img src="img/logo.png" class="w-75"></center>
+        </div>
+        <input type="hidden" name="hidden_ctype" id="hidden_ctype" />
+        <div class="list form-div no-hairlines">
+          <ul>
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-input-wrap">
+                  <select placeholder="SELECT CITY" name="city" class="selcity" required validate onchange="conn_db(this.value)">
+                          <option value="">SELECT CITY</option>
+                          <option value="Bengaluru">Bengaluru</option>
+                          <option value="Hyderabad">Hyderabad</option>
+                          <option value="Mangalore">Mangalore</option>
+                          <option value="Thiruvanatpuram">Thiruvanatpuram</option>
+                          <option value="Pune">Pune</option>
+                          <option value="Trivandrum">Trivandrum</option>
+                          <option value="Mysore">Mysore</option>
+                        </select>
+                </div>
+              </div>
+            </li>
+            <li class="item-content item-input">      
+                <div class="item-inner">
+                    <div class="item-title item-floating-label">MOBILE NUMBER</div>
+                    <div class="item-input-wrap">
+                      <input type="number" placeholder="MOBILE NUMBER" name="mob_number" id="mob_number" required validate onkeyup="getCustInfo(this.value)">
+                      <span class="input-clear-button"></span>
+                    </div>
+                </div>
+            </li>
+            <li class="item-content item-input">      
+                <div class="item-inner">
+                    <div class="item-title item-floating-label">NAME</div>
+                    <div class="item-input-wrap">
+                      <input type="text" placeholder="Name" name="cust_name" id="cust_name" required validate>
+                      <span class="input-clear-button"></span>
+                    </div>
+                </div>
+            </li>
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-input-wrap">
+                  <select placeholder="GENDER" required validate name="gender" id="gender">
+                    <option value="">GENDER</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                </div>
+              </div>
+            </li>
+            
+            <li class="item-content item-input">      
+                <div class="item-inner">
+                    <div class="item-title item-floating-label">EMAIL ID</div>
+                    <div class="item-input-wrap">
+                      <input type="text" placeholder="EMAIL ID" required validate name="emailid" id="emailid">
+                      <span class="input-clear-button"></span>
+                    </div>
+                </div>
+            </li>
+            <li class="item-content item-input">
+                <div class="item-inner">
+                    <div class="item-input-wrap">
+                        <a href="#" class="col button color-signup text-white no-radius mt-p-5" onclick="sendingPassOTP()">SIGN UP</a>  
+                    </div>
+                </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+
+  <div class="toolbar toolbar-bottom-md color-bluebtn toolbar-bluecolor">
+    <div class="toolbar-inner">
+      <a class="link"></a>
+      <a class="link text-white">DESIGNED FOR &nbsp;&nbsp;&nbsp; <span class="text-bosch">CELCABS</span></a>
+      <a class="link"></a> 
+    </div>
+  </div>
+</div>
