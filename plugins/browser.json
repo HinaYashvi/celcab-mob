@@ -43,7 +43,7 @@
     "cordova-plugin-otp-auto-verification": {
       "PACKAGE_NAME": "com.phonegap.celcabs"
     },
-    "cordova-plugin-local-notification": {
+    "de.appplant.cordova.plugin.local-notification": {
       "PACKAGE_NAME": "com.phonegap.celcabs"
     }
   },
@@ -51,7 +51,7 @@
     "cordova-plugin-compat": {
       "PACKAGE_NAME": "com.phonegap.helloworld"
     },
-    "cordova-plugin-badge": {
+    "cordova-plugin-app-event": {
       "PACKAGE_NAME": "com.phonegap.celcabs"
     }
   }
