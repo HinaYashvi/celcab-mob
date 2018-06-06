@@ -1,0 +1,61 @@
+{
+  "_from": "cordova-plugin-gcmpushplugin",
+  "_id": "cordova-plugin-gcmpushplugin@1.2.0",
+  "_inBundle": false,
+  "_integrity": "sha1-chIL+Uw31mqTTDEBlSXlcCw9SQE=",
+  "_location": "/cordova-plugin-gcmpushplugin",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-plugin-gcmpushplugin",
+    "name": "cordova-plugin-gcmpushplugin",
+    "escapedName": "cordova-plugin-gcmpushplugin",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-gcmpushplugin/-/cordova-plugin-gcmpushplugin-1.2.0.tgz",
+  "_shasum": "72120bf94c37d66a934c31019525e5702c3d4901",
+  "_spec": "cordova-plugin-gcmpushplugin",
+  "_where": "C:\\xampp\\htdocs\\celcabsapp",
+  "author": {
+    "name": "Gonzalo Aune"
+  },
+  "bugs": {
+    "url": "https://github.com/gonzaloaune/GCMPushPlugin/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-gcmpushplugin",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "deprecated": false,
+  "description": "\n\t\tThis plugin allows your application to receive push notifications on Android and iOS.\n    Android and iOS uses Google Cloud Messaging. iOS can also run natively.\n\t",
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.8.0"
+    }
+  ],
+  "homepage": "https://github.com/gonzaloaune/GCMPushPlugin#readme",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "license": "MIT",
+  "name": "cordova-plugin-gcmpushplugin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gonzaloaune/GCMPushPlugin.git"
+  },
+  "version": "1.2.0"
+}

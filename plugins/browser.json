@@ -43,16 +43,13 @@
     "cordova-plugin-otp-auto-verification": {
       "PACKAGE_NAME": "com.phonegap.celcabs"
     },
-    "cordova-plugin-local-notifications-gd": {
+    "cordova-plugin-gcmpushplugin": {
       "PACKAGE_NAME": "com.phonegap.celcabs"
     }
   },
   "dependent_plugins": {
     "cordova-plugin-compat": {
       "PACKAGE_NAME": "com.phonegap.helloworld"
-    },
-    "cordova-plugin-app-event": {
-      "PACKAGE_NAME": "com.phonegap.celcabs"
     }
   }
 }

@@ -112,10 +112,9 @@ window.plugins.PushbotsPlugin.on("notification:clicked", function(data){
     var value = window.localStorage.getItem("session_mobilenum");
     //PushbotsPlugin.initialize("5b0548471db2dc33d672ae79");
  
-cordova.plugins.notification.local.schedule({
-    title: 'My first notification',
-    text: 'Thats pretty easy...',
-    foreground: true 
+window.GcmPushPlugin.register(successHandler, errorHandler, {
+    "senderId":"898094326128",
+    "jsCallback":"onNotification"
 });
     if(value==null) 
     {
@@ -127,8 +126,18 @@ cordova.plugins.notification.local.schedule({
     }
 }
 
-
-
+function successHandler(result) {
+  console.log("Token: " + result.gcm);
+  alert("Token: " + result.gcm);
+}
+function errorHandler(error) {
+  console.log("Error: " + error);
+  alert("Error: " + error);
+}
+function onNotification(notification) {
+  console.log("Event Received: " + e); // { "extra": {"url" : "someurl.js" } } 
+  alert("Event Received: " + e); // { "extra": {"url" : "someurl.js" } } 
+}
 // --------------------------- C H E C K  I N T E R N E T  C O N N E C T I O N --------------------- //
 function checkConnection() {
     var networkState = navigator.connection.type;

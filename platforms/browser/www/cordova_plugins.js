@@ -382,30 +382,11 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/cordova-plugin-local-notifications-gd/www/local-notification.js",
-        "id": "cordova-plugin-local-notifications-gd.LocalNotification",
-        "pluginId": "cordova-plugin-local-notifications-gd",
+        "file": "plugins/cordova-plugin-gcmpushplugin/www/gpp.js",
+        "id": "cordova-plugin-gcmpushplugin.GCMPushPlugin",
+        "pluginId": "cordova-plugin-gcmpushplugin",
         "clobbers": [
-            "cordova.plugins.notification.local",
-            "plugin.notification.local"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-local-notifications-gd/www/local-notification-core.js",
-        "id": "cordova-plugin-local-notifications-gd.LocalNotification.Core",
-        "pluginId": "cordova-plugin-local-notifications-gd",
-        "clobbers": [
-            "cordova.plugins.notification.local.core",
-            "plugin.notification.local.core"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-local-notifications-gd/www/local-notification-util.js",
-        "id": "cordova-plugin-local-notifications-gd.LocalNotification.Util",
-        "pluginId": "cordova-plugin-local-notifications-gd",
-        "merges": [
-            "cordova.plugins.notification.local.core",
-            "plugin.notification.local.core"
+            "GcmPushPlugin"
         ]
     }
 ];
@@ -425,8 +406,7 @@ module.exports.metadata =
     "cordova-plugin-vibration": "3.1.0",
     "cordova-plugin-whitelist": "1.3.3",
     "cordova-plugin-otp-auto-verification": "1.0.1",
-    "cordova-plugin-app-event": "1.2.1",
-    "cordova-plugin-local-notifications-gd": "0.8.4"
+    "cordova-plugin-gcmpushplugin": "1.2.0"
 }
 // BOTTOM OF METADATA
 });
