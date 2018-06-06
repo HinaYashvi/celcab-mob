@@ -1,27 +1,28 @@
 {
-  "_from": "cordova-plugin-app-event",
+  "_from": "cordova-plugin-app-event@^1.2.1",
   "_id": "cordova-plugin-app-event@1.2.1",
   "_inBundle": false,
   "_integrity": "sha1-DuuxQTKqQ7suXAgamr29l8otgTI=",
   "_location": "/cordova-plugin-app-event",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "range",
     "registry": true,
-    "raw": "cordova-plugin-app-event",
+    "raw": "cordova-plugin-app-event@^1.2.1",
     "name": "cordova-plugin-app-event",
     "escapedName": "cordova-plugin-app-event",
-    "rawSpec": "",
+    "rawSpec": "^1.2.1",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "^1.2.1"
   },
   "_requiredBy": [
     "#USER",
-    "/"
+    "/",
+    "/cordova-plugin-local-notifications-gd"
   ],
   "_resolved": "https://registry.npmjs.org/cordova-plugin-app-event/-/cordova-plugin-app-event-1.2.1.tgz",
   "_shasum": "0eebb14132aa43bb2e5c081a9abdbd97ca2d8132",
-  "_spec": "cordova-plugin-app-event",
+  "_spec": "cordova-plugin-app-event@^1.2.1",
   "_where": "C:\\xampp\\htdocs\\celcabsapp",
   "author": {
     "name": "Sebastián Katzer"

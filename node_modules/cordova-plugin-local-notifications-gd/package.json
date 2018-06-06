@@ -1,0 +1,80 @@
+{
+  "_from": "cordova-plugin-local-notifications-gd",
+  "_id": "cordova-plugin-local-notifications-gd@0.8.4",
+  "_inBundle": false,
+  "_integrity": "sha1-bLq2CtfCgGbqAxgV/cVbF0ReomY=",
+  "_location": "/cordova-plugin-local-notifications-gd",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-plugin-local-notifications-gd",
+    "name": "cordova-plugin-local-notifications-gd",
+    "escapedName": "cordova-plugin-local-notifications-gd",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-local-notifications-gd/-/cordova-plugin-local-notifications-gd-0.8.4.tgz",
+  "_shasum": "6cbab60ad7c28066ea031815fdc55b17445ea266",
+  "_spec": "cordova-plugin-local-notifications-gd",
+  "_where": "C:\\xampp\\htdocs\\celcabsapp",
+  "author": {
+    "name": "Sebastián Katzer"
+  },
+  "bugs": {
+    "url": "https://github.com/katzer/cordova-plugin-local-notifications/issues"
+  },
+  "bundleDependencies": false,
+  "cordova_name": "Cordova Plugin Local Notifications",
+  "dependencies": {
+    "cordova-plugin-app-event": ">=1.1.0",
+    "cordova-plugin-device": "*"
+  },
+  "deprecated": false,
+  "description": "Schedules and queries for local notifications",
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.6.0"
+    },
+    {
+      "name": "cordova-plugman",
+      "version": ">=4.3.0"
+    },
+    {
+      "name": "cordova-windows",
+      "version": ">=4.2.0"
+    }
+  ],
+  "homepage": "https://github.com/katzer/cordova-plugin-local-notifications#readme",
+  "keywords": [
+    "appplant",
+    "notification",
+    "local notification",
+    "cordova",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-windows"
+  ],
+  "license": "Apache-2.0",
+  "name": "cordova-plugin-local-notifications-gd",
+  "platforms": [
+    "ios",
+    "android",
+    "windows"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/katzer/cordova-plugin-local-notifications.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.8.4"
+}

@@ -112,7 +112,7 @@ window.plugins.PushbotsPlugin.on("notification:clicked", function(data){
     var value = window.localStorage.getItem("session_mobilenum");
     //PushbotsPlugin.initialize("5b0548471db2dc33d672ae79");
  
-window.plugins.notification.local.schedule({
+cordova.plugins.notification.local.schedule({
     title: 'My first notification',
     text: 'Thats pretty easy...',
     foreground: true 
