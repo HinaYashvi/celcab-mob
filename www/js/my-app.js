@@ -111,14 +111,12 @@ window.plugins.PushbotsPlugin.on("notification:clicked", function(data){
    //alert("in checkStorage func");
     var value = window.localStorage.getItem("session_mobilenum");
     //PushbotsPlugin.initialize("5b0548471db2dc33d672ae79");
-    var notificationOpenedCallback = function(jsonData) {
-    console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-  };
-OneSignal.setLogLevel(OneSignal.LOG_LEVEL.DEBUG, OneSignal.LOG_LEVEL.DEBUG);
-  window.plugins.OneSignal.startInit("498575e0-f2cf-4f27-bba6-48b4c0e1e95e","898094326128")
-    .handleNotificationOpened(notificationOpenedCallback)
-    .endInit();
-
+ 
+window.plugins.notification.local.schedule({
+    title: 'My first notification',
+    text: 'Thats pretty easy...',
+    foreground: true 
+});
     if(value==null) 
     {
       //mainView.loadPage("index.html");
@@ -128,6 +126,9 @@ OneSignal.setLogLevel(OneSignal.LOG_LEVEL.DEBUG, OneSignal.LOG_LEVEL.DEBUG);
       app.router.navigate('/ridehistory/');
     }
 }
+
+
+
 // --------------------------- C H E C K  I N T E R N E T  C O N N E C T I O N --------------------- //
 function checkConnection() {
     var networkState = navigator.connection.type;
