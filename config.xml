@@ -109,5 +109,5 @@
     <plugin name="cordova-plugin-otp-auto-verification" spec="^1.0.1" />
     <plugin name="cordova-plugin-compat" spec="^1.2.0" />
     <plugin name="onesignal-cordova-plugin" spec="^2.4.1" />
-    <engine name="android" spec="~7.0.0" />
+    <engine name="android" spec="^7.0.0" />
 </widget>

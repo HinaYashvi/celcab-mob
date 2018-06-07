@@ -116,7 +116,7 @@ var notificationOpenedCallback = function(jsonData) {
     console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
   };
 
-  window.plugins.OneSignal.startInit("735cf91e-0f0f-402c-9797-ced70be908d6").handleNotificationOpened(notificationOpenedCallback).endInit();
+  window.plugins.OneSignal.startInit("00601283-97fa-455d-ae71-0e064926d8e2").handleNotificationOpened(notificationOpenedCallback).endInit();
 
     if(value==null) 
     {
