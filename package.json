@@ -2,6 +2,7 @@
     "requires": true,
     "lockfileVersion": 1,
     "dependencies": {
+        "cordova-android": "^7.0.0",
         "cordova-browser": {
             "dependencies": {
                 "abbrev": {
@@ -680,7 +681,6 @@
         "cordova-plugin-device": "^2.0.2",
         "cordova-plugin-dialogs": "^2.0.1",
         "cordova-plugin-file": "^6.0.1",
-        "cordova-plugin-gcmpushplugin": "^1.2.0",
         "cordova-plugin-geolocation": "^4.0.1",
         "cordova-plugin-globalization": "^1.11.0",
         "cordova-plugin-inappbrowser": "^3.0.0",
@@ -5801,7 +5801,8 @@
             },
             "resolved": "https://registry.npmjs.org/npm/-/npm-6.0.0.tgz",
             "version": "6.0.0"
-        }
+        },
+        "onesignal-cordova-plugin": "^2.4.1"
     },
     "cordova": {
         "plugins": {
@@ -5819,8 +5820,10 @@
             "cordova-plugin-whitelist": {},
             "cordova-plugin-otp-auto-verification": {},
             "cordova-plugin-compat": {},
-            "cordova-plugin-gcmpushplugin": {}
+            "onesignal-cordova-plugin": {}
         },
-        "platforms": []
+        "platforms": [
+            "android"
+        ]
     }
 }

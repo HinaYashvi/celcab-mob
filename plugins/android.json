@@ -1,0 +1,54 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-battery-status": {
+      "PACKAGE_NAME": "com.phonegap.celcabs"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.phonegap.celcabs"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.phonegap.celcabs"
+    },
+    "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "com.phonegap.celcabs"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.phonegap.celcabs"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "com.phonegap.celcabs"
+    },
+    "cordova-plugin-globalization": {
+      "PACKAGE_NAME": "com.phonegap.celcabs"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.phonegap.celcabs"
+    },
+    "cordova-plugin-media-capture": {
+      "PACKAGE_NAME": "com.phonegap.celcabs"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "com.phonegap.celcabs"
+    },
+    "cordova-plugin-otp-auto-verification": {
+      "PACKAGE_NAME": "com.phonegap.celcabs"
+    },
+    "cordova-plugin-vibration": {
+      "PACKAGE_NAME": "com.phonegap.celcabs"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.phonegap.celcabs"
+    },
+    "onesignal-cordova-plugin": {
+      "PACKAGE_NAME": "com.phonegap.celcabs"
+    }
+  },
+  "dependent_plugins": {}
+}

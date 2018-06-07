@@ -1,0 +1,19 @@
+.mt-100{
+	margin-top: 100px;
+}
+.mt-p-10{
+	margin-top: 10%;
+}
+.w-75{
+	width:75%;
+}
+.w-100{
+	width:100%;
+}
+.form-div{
+	padding: 2% 0 0 8%;
+	width:85%;
+}
+.md .item-input-wrap:after{
+	background-color: rgba(0, 0, 0, 0.85)!important;	
+}

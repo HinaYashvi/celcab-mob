@@ -382,11 +382,11 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/cordova-plugin-gcmpushplugin/www/gpp.js",
-        "id": "cordova-plugin-gcmpushplugin.GCMPushPlugin",
-        "pluginId": "cordova-plugin-gcmpushplugin",
+        "file": "plugins/onesignal-cordova-plugin/www/OneSignal.js",
+        "id": "onesignal-cordova-plugin.OneSignal",
+        "pluginId": "onesignal-cordova-plugin",
         "clobbers": [
-            "GcmPushPlugin"
+            "OneSignal"
         ]
     }
 ];
@@ -406,7 +406,7 @@ module.exports.metadata =
     "cordova-plugin-vibration": "3.1.0",
     "cordova-plugin-whitelist": "1.3.3",
     "cordova-plugin-otp-auto-verification": "1.0.1",
-    "cordova-plugin-gcmpushplugin": "1.2.0"
+    "onesignal-cordova-plugin": "2.4.1"
 }
 // BOTTOM OF METADATA
 });

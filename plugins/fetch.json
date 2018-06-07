@@ -127,10 +127,10 @@
     "is_top_level": false,
     "variables": {}
   },
-  "cordova-plugin-gcmpushplugin": {
+  "onesignal-cordova-plugin": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-gcmpushplugin"
+      "id": "onesignal-cordova-plugin"
     },
     "is_top_level": true,
     "variables": {}
