@@ -73,7 +73,7 @@ function checkStorage()
            // console.log(pnr);
             var pushnotification_url = "http://128.199.226.85/mobileapp_celcabs/appcontroller/send_enroute_push";
               $.ajax({ 
-                'type':'POST', 
+                'type':'POST',  
                 'url':pushnotification_url,
                 'data':{'city':sess_city,'pnr':pnr},
                 success:function(push_response){ 
