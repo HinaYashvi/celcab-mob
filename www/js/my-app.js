@@ -73,7 +73,7 @@ function checkStorage()
            // console.log(pnr);
             var pushnotification_url = "http://128.199.226.85/mobileapp_celcabs/appcontroller/send_enroute_push";
               $.ajax({ 
-                'type':'POST',  
+                'type':'POST', 
                 'url':pushnotification_url,
                 'data':{'city':sess_city,'pnr':pnr},
                 success:function(push_response){ 
@@ -95,7 +95,7 @@ function checkStorage()
                           'url':driverno_url,
                           'data':{'city':sess_city,'celcabs_vehicle_id':celcabs_vehicle_id},
                           success:function(drvno_response){
-                            if(drvno_response){
+                            //if(drvno_response){
                               //console.log("*****"+drvno_response);
                               var push_drv_array = $.parseJSON(drvno_response);
                               var json_drvrno = push_drv_array.driver_ph;
@@ -104,26 +104,26 @@ function checkStorage()
                               for(var k=0;k<json_drvrno.length;k++){
                                 //alert(json_drvrno[k].alt_phone_number);
                                 var driver_phone=json_drvrno[k].alt_phone_number;
-                                if(driver_phone!=''){
+                               // if(driver_phone!=''){
                                   //alert(customer_phone1+"---"+customer_phone2);
                                   if(customer_phone1!='' || customer_phone2!=''){
                                     // send push here //
-                                    //if(callbook_cust_id == sess_cust){
+                                    if(callbook_cust_id == sess_cust){
                                       var push_url = "http://128.199.226.85/mobileapp_celcabs/appcontroller/sendPushMsg";
                                       $.ajax({ 
                                         'type':'POST', 
                                         'url':push_url,
-                                        'data':{'city':sess_city,'celcabs_vehicle_id':celcabs_vehicle_id,'customer_phone1':customer_phone1,'customer_phone2':customer_phone2,'driver_phone':driver_phone,'eatdate':eatdate,'pickuptime':pickuptime,'sess_cust':sess_cust,'callbook_cust_id':callbook_cust_id},
+                                        'data':{'city':sess_city,'celcabs_vehicle_id':celcabs_vehicle_id,'customer_phone1':customer_phone1,'customer_phone2':customer_phone2,'driver_phone':driver_phone,'eatdate':eatdate,'pickuptime':pickuptime},
                                           success:function(push_response){ 
                                               //console.log(push_response);
                                           }
                                       });
-                                    //}
+                                    }
                                   }
-                                }
+                                //}
                               }
 
-                            }
+                           // }
                           }
                         });
                     }
