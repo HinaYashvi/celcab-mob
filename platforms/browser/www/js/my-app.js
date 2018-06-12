@@ -64,10 +64,9 @@ function checkStorage()
       'data':{'city':sess_city,'sess_cust':sess_cust,'sess_mobilenum':sess_mobilenum},
       success:function(response){ 
         if(response){
-          console.log(response);
+          //console.log(response);
           var upcomingride_json_array = $.parseJSON(response);
           var json_upcmride_enrt = upcomingride_json_array.upcomingrides_enroute; 
-          if(json_upcmride_enrt.length > 0){
           for(var i=0;i<json_upcmride_enrt.length;i++){
             var pnr=json_upcmride_enrt[i].id;
             var callbook_cust_id=json_upcmride_enrt[i].customer_master_id;
@@ -76,13 +75,13 @@ function checkStorage()
               $.ajax({ 
                 'type':'POST', 
                 'url':pushnotification_url,
-                'data':{'city':sess_city,'pnr':pnr,'sess_cust':sess_cust},
+                'data':{'city':sess_city,'pnr':pnr},
                 success:function(push_response){ 
                   if(push_response){
                     //console.log(push_response);                 
                     var push_json_array = $.parseJSON(push_response);
                     var json_pushnotify = push_json_array.notifypush;
-                    console.log(json_pushnotify.length);
+                    //console.log(json_pushnotify);
                     for(var j=0;j<json_pushnotify.length;j++){
                       var celcabs_vehicle_id = json_pushnotify[j].celcabs_vehicle_id;
                       var customer_phone1=json_pushnotify[j].phone_no1;
@@ -115,9 +114,8 @@ function checkStorage()
                                       $.ajax({ 
                                         'type':'POST', 
                                         'url':push_url,
-                                        'data':{'city':sess_city,'celcabs_vehicle_id':celcabs_vehicle_id,'customer_phone1':customer_phone1,'customer_phone2':customer_phone2,'driver_phone':driver_phone,'eatdate':eatdate,'pickuptime':pickuptime,'sess_cust':sess_cust,'customer_master_id':callbook_cust_id,'sess_mobilenum':sess_mobilenum},
+                                        'data':{'city':sess_city,'celcabs_vehicle_id':celcabs_vehicle_id,'customer_phone1':customer_phone1,'customer_phone2':customer_phone2,'driver_phone':driver_phone,'eatdate':eatdate,'pickuptime':pickuptime,'sess_cust':sess_cust,'customer_master_id':callbook_cust_id},
                                           success:function(push_response){
-                                            alert("push_response");
                                               //console.log(push_response);
                                           }
                                       });
@@ -135,8 +133,6 @@ function checkStorage()
                 }
               });
           }
-
-        }
         } 
       } 
   });
