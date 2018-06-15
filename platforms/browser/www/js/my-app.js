@@ -755,7 +755,8 @@ function getDriver(pnrno,sess_cust){
             var vid = json_drvrno[0].celcabs_vehicle_id;
             var vehicle_no = json_drvrno[0].license_plate;
             var driver_photo =  json_drvrno[0].driver_photo;
-            var driver_mobile = json_drvmob[0].alt_phone_number;
+            //var driver_mobile = json_drvmob[0].alt_phone_number;
+            var driver_mobile ='9624658122';
               if(driver_mobile!='' && driver_mobile!=undefined){
                 var mob_driver = driver_mobile;
               }else{
@@ -773,7 +774,7 @@ function getDriver(pnrno,sess_cust){
               dt2 = new Date(pickdt);
               var approx_ETA=diff_minutes(dt1, dt2);
 
-              var driver_info = d_pictr+'<center><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30 text-bold">'+driver_name+'</div></div></li><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30">vid: '+vid+'</div></div></li><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30">mob: '+mob_driver+'</div></div></li><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30">vehicle: '+vehicle_no+'</div></div></li><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30">approx. eta: '+approx_ETA+' min</div></div></li><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30"><a href="#" class="col button color-signup text-white no-radius mt-p-5" onclick="call_driver()">CALL DRIVER</a></div></div></li></center></div>';
+              var driver_info = d_pictr+'<center><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30 text-bold">'+driver_name+'</div></div></li><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30">vid: '+vid+'</div></div></li><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30">mob: '+mob_driver+'</div></div></li><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30">vehicle: '+vehicle_no+'</div></div></li><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30">approx. eta: '+approx_ETA+' min</div></div></li><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30"><a href="#" class="col button color-signup text-white no-radius mt-p-5" onclick="call_driver('+"'"+mob_driver+"'"+')">CALL DRIVER</a></div></div></li></center></div>';
               //var driver_info = d_pictr+'<center><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30 text-bold">'+driver_name+'</div></div></li><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30">vid: '+vid+'</div></div></li></center>';
 
               $(".driverdetails").html(driver_info);
@@ -785,10 +786,11 @@ function getDriver(pnrno,sess_cust){
     }
   });
 }
-function call_driver(){
-  alert("called");
+function call_driver(mob_driver){
+  //alert("called"+mob_driver);
   //window.location.href = "tel:9624658122";
-  window.plugins.CallNumber.callNumber(onSuccess, onError, '9624658122', true);
+  window.plugins.CallNumber.callNumber(onSuccess, onError, mob_driver, true);
+  //window.plugins.CallNumber.callNumber(onSuccess, onError, '9624658122', true);
 }
 function onSuccess(result){
   console.log("Success:"+result);
