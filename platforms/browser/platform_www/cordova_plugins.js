@@ -382,11 +382,11 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/onesignal-cordova-plugin/www/OneSignal.js",
-        "id": "onesignal-cordova-plugin.OneSignal",
-        "pluginId": "onesignal-cordova-plugin",
+        "file": "plugins/cordova-plugin-call-number/www/CallNumber.js",
+        "id": "cordova-plugin-call-number.CallNumber",
+        "pluginId": "cordova-plugin-call-number",
         "clobbers": [
-            "OneSignal"
+            "call"
         ]
     }
 ];
@@ -406,7 +406,7 @@ module.exports.metadata =
     "cordova-plugin-vibration": "3.1.0",
     "cordova-plugin-whitelist": "1.3.3",
     "cordova-plugin-otp-auto-verification": "1.0.1",
-    "onesignal-cordova-plugin": "2.4.1"
+    "cordova-plugin-call-number": "1.0.1"
 }
 // BOTTOM OF METADATA
 });

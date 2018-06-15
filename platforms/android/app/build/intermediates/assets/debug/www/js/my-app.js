@@ -25,6 +25,7 @@ var app = new Framework7({
         app.hideIndicator();
     }
 }); 
+
 var mainView = app.views.create('.view-main');
 /*var mainView = app.views.create('.view-main', {
   dynamicNavbar: true
@@ -49,86 +50,109 @@ function onBackKeyDown() {
        }
 }
 
-
 function checkStorage()
 { 
-  
+  checkConnection();  
+  var sess_mobilenum = window.localStorage.getItem("session_mobilenum");
+  if(sess_mobilenum==null) 
+  {
+    //mainView.loadPage("index.html");
+    app.router.navigate('/index/');
+  }else{
+    //mainView.loadPage("bookride.html");
+    app.router.navigate('/ridehistory/');
+  }
+  /*var sess_city = window.localStorage.getItem("session_city");
+  var sess_cust = window.localStorage.getItem("session_custid");
 
- /* window.plugins.notification.local.schedule({
-    title: 'My first notification',
-    text: 'Thats pretty easy...',
-    foreground: true,
-    led: { color: '#FF00FF', on: 500, off: 500 },
-    vibrate: true
-});*/
- /* var pushNotification; 
-  pushNotification = window.plugins.pushNotification;
+  var upcoming_booking_url="http://128.199.226.85/mobileapp_celcabs/appcontroller/upcoming_rides_enroute";
 
-if ( device.platform == 'android' || device.platform == 'Android' || device.platform == "amazon-fireos" ){
-    pushNotification.register(
-    successHandler,
-    errorHandler,
-    {
-        "senderID":"846304146142",
-        "badge":"true",
-        "sound":"true",
-        "alert":"true",
-        "ecb":"onNotification"
-    }); 
-}
- /* window.plugins.PushbotsPlugin.initialize("5b0548471db2dc33d672ae79", {"android":{"sender_id":"846304146142"}});
-// Only with First time registration
-window.plugins.PushbotsPlugin.on("registered", function(token){
-  console.log("Registration Id:" + token);
-  alert("TOKEN ::"+token);
-});
+  var pushnotification_url = "http://128.199.226.85/mobileapp_celcabs/appcontroller/send_enroute_push";
 
-//Get user registrationId/token and userId on PushBots, with evey launch of the app even launching with notification
-window.plugins.PushbotsPlugin.on("user:ids", function(data){
-  console.log("user:ids" + JSON.stringify(data));
-  alert("JSON ::"+JSON.stringify(data));
-}); 
+  var driverno_url = "http://128.199.226.85/mobileapp_celcabs/appcontroller/getDriverno";
 
-window.plugins.PushbotsPlugin.on("notification:received", function(data){
-    console.log("received:" + JSON.stringify(data));
-    alert("received:" + JSON.stringify(data));
-    //iOS: [foreground/background]
-    console.log("notification received from:" + data.cordova_source);
-    alert("notification received from:" + data.cordova_source);
-    //Silent notifications Only [iOS only]
-    //Send CompletionHandler signal with PushBots notification Id
-    window.plugins.PushbotsPlugin.done(data.pb_n_id);
-});
- 
-window.plugins.PushbotsPlugin.on("notification:clicked", function(data){
-    // var userToken = data.token; 
-       // var userId = data.userId;
-    console.log("clicked:" + JSON.stringify(data));
-    alert("clicked:" + JSON.stringify(data));
-});
-*/
-   checkConnection();
-   //alert("in checkStorage func");
-    var value = window.localStorage.getItem("session_mobilenum");
-    //PushbotsPlugin.initialize("5b0548471db2dc33d672ae79");
- 
-var notificationOpenedCallback = function(jsonData) {
+  //var push_url = "http://128.199.226.85/mobileapp_celcabs/appcontroller/sendPushMsg";
+  var sms_url = "http://128.199.226.85/mobileapp_celcabs/appcontroller/sendEnrouteSMS";
+
+  $.ajax({ 
+    'type':'POST', 
+      'url':upcoming_booking_url,
+      'data':{'city':sess_city,'sess_cust':sess_cust,'sess_mobilenum':sess_mobilenum},
+      success:function(response){ 
+          if(response){
+            console.log(response);
+            var upcomingride_json_array = $.parseJSON(response);
+            var json_upcmride_enrt = upcomingride_json_array.upcomingrides_enroute;
+              for(var i=0;i<json_upcmride_enrt.length;i++){
+                var pnr=json_upcmride_enrt[i].id;
+                var callbook_cust_id=json_upcmride_enrt[i].customer_master_id;
+                //console.log(pnr);
+
+
+                $.ajax({ 
+                  'type':'POST', 
+                  'url':pushnotification_url,
+                  'data':{'city':sess_city,'pnr':pnr,'sess_cust':sess_cust},
+                  success:function(push_response){ 
+                    if(push_response){
+                      //console.log(push_response);  
+                      var push_json_array = $.parseJSON(push_response);
+                      var json_pushnotify = push_json_array.notifypush;
+                      //console.log(json_pushnotify);
+                      for(var j=0;j<json_pushnotify.length;j++){
+                        var celcabs_vehicle_id = json_pushnotify[j].celcabs_vehicle_id;
+                        var customer_phone1=json_pushnotify[j].phone_no1;
+                        var customer_phone2=json_pushnotify[j].phone_no2;
+                        var eatdate=json_pushnotify[j].eatdate;
+                        var pickuptime=json_pushnotify[j].pickuptime;
+                        $.ajax({ 
+                          'type':'POST', 
+                          'url':driverno_url,
+                          'data':{'city':sess_city,'celcabs_vehicle_id':celcabs_vehicle_id},
+                          success:function(drvno_response){
+                              var push_drv_array = $.parseJSON(drvno_response);
+                              var json_drvrno = push_drv_array.driver_ph; 
+                              //console.log(json_drvrno+"===="+json_drvrno.length);
+                              for(var k=0;k<json_drvrno.length;k++){
+                                //alert(json_drvrno[k].alt_phone_number);
+                                var driver_phone=json_drvrno[k].alt_phone_number;
+                              
+                              if(customer_phone1!='' || customer_phone2!=''){
+                                //alert(callbook_cust_id +"=="+ sess_cust); 
+                                if(callbook_cust_id == sess_cust){
+                                  $.ajax({ 
+                                      'type':'POST', 
+                                      //'url':push_url, // FOR PUSH NOTIFICATION //
+                                      'url':sms_url,  
+                                      'data':{'city':sess_city,'celcabs_vehicle_id':celcabs_vehicle_id,'customer_phone1':customer_phone1,'customer_phone2':customer_phone2,'driver_phone':driver_phone,'eatdate':eatdate,'pickuptime':pickuptime,'sess_cust':sess_cust,'customer_master_id':callbook_cust_id},
+                                        success:function(push_response){
+                                          //console.log(push_response);
+                                          //alert(push_response);    
+                                        }
+                                  });
+                                }
+                              }
+                            }
+                          }
+                        });
+                      }
+                    }
+                  }  
+                });
+
+              }
+          }
+      }
+  }); */
+
+  //var value = window.localStorage.getItem("session_mobilenum"); 
+  /*var notificationOpenedCallback = function(jsonData) {
     console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-  };
+  };*/
+  /* window.plugins.OneSignal.startInit("00601283-97fa-455d-ae71-0e064926d8e2").handleNotificationOpened(notificationOpenedCallback).endInit(); */
 
-  window.plugins.OneSignal.startInit("735cf91e-0f0f-402c-9797-ced70be908d6").handleNotificationOpened(notificationOpenedCallback).endInit();
-
-    if(value==null) 
-    {
-      //mainView.loadPage("index.html");
-      app.router.navigate('/index/');
-    }else{
-      //mainView.loadPage("bookride.html");
-      app.router.navigate('/ridehistory/');
-    }
+  
 }
-
-
 // --------------------------- C H E C K  I N T E R N E T  C O N N E C T I O N --------------------- //
 function checkConnection() {
     var networkState = navigator.connection.type;
@@ -564,7 +588,7 @@ function bookmyride(){
   checkConnection();
   app.router.navigate('/ridehistory/');
   //var sess_city = window.localStorage.getItem("session_city");
-  /*var sess_cust = window.localStorage.getItem("session_custid");
+  var sess_cust = window.localStorage.getItem("session_custid");
   var sess_mobilenum = window.localStorage.getItem("session_mobilenum");
   var bookRideForm=$(".bookRide").serialize();
   //console.log(bookRideForm);
@@ -591,17 +615,20 @@ function bookmyride(){
               closeTimeout: 4000,
               closeButton: true
             });*/
- /*           $('#bookRide')[0].reset();
+            $('#bookRide')[0].reset();
             //ridebooktoastTop.open();
-            app.dialog.alert("Ride booked successfully",function (){
-              app.router.navigate('/ridehistory/');
+              app.dialog.alert("Ride booked successfully",function (){
+                app.router.navigate('/ridehistory/');
             });
           }
         }
-  });*/
+  });
 }
 $$(document).on('page:init', '.page[data-name="ridehistory"]', function (e) {
   checkConnection();
+  $(".popover.modal-in").css("display","none");
+  $(".popover-links").css("display",'none');
+  $(".popover-backdrop.backdrop-in").css("visibility","hidden");
   var sess_city = window.localStorage.getItem("session_city");
   var sess_cust = window.localStorage.getItem("session_custid");
   var sess_mobilenum = window.localStorage.getItem("session_mobilenum");
@@ -620,20 +647,36 @@ $$(document).on('page:init', '.page[data-name="ridehistory"]', function (e) {
           //alert(json_upcmride.length+"length");
           for(var i=0;i<json_upcmride.length;i++){
             var booking_dt=json_upcmride[i].booking_dt;
+            //alert(booking_dt);
+            var rpt_dt = json_upcmride[i].rpt_dt;
             var booking_tm=json_upcmride[i].booking_time;
+            var rpt_tm = json_upcmride[i].rpt_time;
             var from_location=json_upcmride[i].pickup_area;
             var from_city=json_upcmride[i].pickup_city;
 
             var to_location=json_upcmride[i].drop_area;
             var to_city=json_upcmride[i].drop_city;
-
+            var status_id=json_upcmride[i].sid;
+            //alert(status_id);
+            if(status_id!= null && status_id == 7) {
+             var pnrno=json_upcmride[i].id;
+             //alert(pnrno);
+              var driver_detbtn="<button onclick='getDriver("+pnrno+","+sess_cust+")' class='col button button-small button-outline fs-8 text-drvdet-btn fs-8 border-drvdet-btn drvbtn ml-20 login-screen-open' data-login-screen='.login-screen'>DRIVER DETAILS</button>";
+            }else{
+              var driver_detbtn='';
+            }
+           // alert(driver_detbtn);
+            //
             //alert(fromto_location+"pickup");
             //alert(fromto_city+"city");
             //upcmridedata+='<li><a href="#" class="item-link item-content"><div class="item-media"><img src="img/cabs/taxi3.png" height="60" width="50"></div><div class="item-inner"><div class="item-title"><div class="item-header text-left">Ride Dt:'+booking_dt+" "+booking_tm+'</div>| John Doe</div><div class="item-after">Edit</div></div></a></li>';
+           upcmridedata+='<li><a href="#" class="item-link item-content"><div class="item-media"><img src="img/cabs/taxi3.png" height="50" width="40" class="img img1"><button class="col button button-small button-outline text-pink fs-8 border-pink pinkbtn img2">SCHEDULED</button></div><div class="item-inner"><div class="item-title"><div class="item-header text-left"><i class="f7-icons color-black fs-12 mr-5 ml-3">calendar</i>'+rpt_dt+'</div><img src="img/cabs/from.png" height="20" width="23" class="mr-5 mt-5"><span class="fs-12">'+from_location+" ,"+from_city+'</span><br/><img src="img/cabs/mapmarker4.png" height="20" width="23" class="mr-5 mt-5"><span class="fs-12">'+to_location+" ,"+to_city+'</span><br/>'+driver_detbtn+'</div><div class="item-after"><!--button class="col button button-small button-outline text-pink fs-8 border-pink pinkbtn">SCHEDULED</button--></div><div class="item-after fs-12"><i class="f7-icons color-black fs-12 mr-5 mt-5">time</i>'+rpt_tm+'</div></div></a></li>';            
 
-            upcmridedata+='<li><a href="#" class="item-link item-content"><div class="item-media"><img src="img/cabs/taxi3.png" height="50" width="40" class="img img1"><button class="col button button-small button-outline text-pink fs-8 border-pink pinkbtn img2">SCHEDULED</button></div><div class="item-inner"><div class="item-title"><div class="item-header text-left"><i class="f7-icons color-black fs-12 mr-5 ml-3">calendar</i>'+booking_dt+'</div><img src="img/cabs/from.png" height="20" width="23" class="mr-5 mt-5"><span class="fs-12">'+from_location+" ,"+from_city+'</span><br/><img src="img/cabs/mapmarker4.png" height="20" width="23" class="mr-5 mt-5"><span class="fs-12">'+to_location+" ,"+to_city+'</span></div><div class="item-after"><!--button class="col button button-small button-outline text-pink fs-8 border-pink pinkbtn">SCHEDULED</button--></div><div class="item-after fs-12"><i class="f7-icons color-black fs-12 mr-5 mt-5">time</i>'+booking_tm+'</div></div></a></li>';            
+
 
               $("#upcomigrides").html(upcmridedata);
+
+
           }
           //window.localStorage.setItem("reg_custid", response);
           //app.router.navigate('/verifyotp/');
@@ -679,9 +722,108 @@ $$(document).on('page:init', '.page[data-name="ridehistory"]', function (e) {
           //app.router.navigate('/verifyotp/');
         }
       }
-    });
+    }); 
 
 });
+
+function getDriver(pnrno,sess_cust){
+  var sess_city = window.localStorage.getItem("session_city");
+  var pushnotification_url = "http://128.199.226.85/mobileapp_celcabs/appcontroller/send_enroute_push";
+  var driverdetail_url = "http://128.199.226.85/mobileapp_celcabs/appcontroller/getDriverdetail";
+  $.ajax({ 
+    'type':'POST', 
+    'url':pushnotification_url,
+    'data':{'city':sess_city,'pnr':pnrno,'sess_cust':sess_cust},
+    success:function(push_response){  
+      if(push_response){
+        var push_json_array = $.parseJSON(push_response);
+        var json_pushnotify = push_json_array.notifypush;
+        var celcabs_vehicle_id = json_pushnotify[0].celcabs_vehicle_id;
+        var todaydate = json_pushnotify[0].todaydate;
+        var pickdt = json_pushnotify[0].pickdt;
+        var curr_time = todaydate;
+        var pickuptime = pickdt;
+        $.ajax({ 
+          'type':'POST', 
+          'url':driverdetail_url,
+          'data':{'city':sess_city,'celcabs_vehicle_id':celcabs_vehicle_id},
+          success:function(drvno_response){ 
+            var push_drv_array = $.parseJSON(drvno_response);
+            var json_drvrno = push_drv_array.driver_det; 
+            var json_drvmob = push_drv_array.driver_mob;
+            var driver_name=json_drvrno[0].driver_name;
+            var vid = json_drvrno[0].celcabs_vehicle_id;
+            var vehicle_no = json_drvrno[0].license_plate;
+            var driver_photo =  json_drvrno[0].driver_photo;
+            var driver_mobile = json_drvmob[0].alt_phone_number;
+              if(driver_mobile!='' && driver_mobile!=undefined){
+                var mob_driver = driver_mobile;
+              }else{
+                var mob_driver = '';
+              }
+              var split_drvpic=driver_photo.split("/");
+              if(split_drvpic[1]==''){
+                // no photo found. //
+                var d_pictr='<div class="row center"><div class="col-100 tablet-33"><center><img src="img/cabs/male-circle-512.png" class="w-45"  width=50 ></center></div></div>';
+              }else{
+                // photo found. //
+                var d_pictr='';
+              }
+              dt1 = new Date(todaydate); 
+              dt2 = new Date(pickdt);
+              var approx_ETA=diff_minutes(dt1, dt2);
+
+              var driver_info = d_pictr+'<center><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30 text-bold">'+driver_name+'</div></div></li><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30">vid: '+vid+'</div></div></li><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30">mob: '+mob_driver+'</div></div></li><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30">vehicle: '+vehicle_no+'</div></div></li><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30">approx. eta: '+approx_ETA+' min</div></div></li><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30"><a href="#" class="col button color-signup text-white no-radius mt-p-5" onclick="call_driver()">CALL DRIVER</a></div></div></li></center></div>';
+              //var driver_info = d_pictr+'<center><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30 text-bold">'+driver_name+'</div></div></li><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30">vid: '+vid+'</div></div></li></center>';
+
+              $(".driverdetails").html(driver_info);
+
+            }
+          //} 
+        });
+      }
+    }
+  });
+}
+function call_driver(){
+  alert("called");
+  //window.location.href = "tel:9624658122";
+  window.plugins.CallNumber.callNumber(onSuccess, onError, '9624658122', true);
+}
+function onSuccess(result){
+  console.log("Success:"+result);
+}
+ 
+function onError(result) {
+  console.log("Error:"+result);
+}
+function diff_minutes(dt2, dt1){
+  var diff =(dt2.getTime() - dt1.getTime()) / 1000;
+  diff /= 60;
+  var divdesec = Math.abs(Math.round(diff));
+  var tm=timeConvert(divdesec);
+  return tm;
+}
+
+function timeConvert(n) {
+  var num = n;
+  var hours = (num / 60);
+  var rhours = Math.floor(hours);
+  var minutes = (hours - rhours) * 60;
+  var rminutes = Math.round(minutes);
+  //return num + " minutes = " + rhours + " hour(s) and " + rminutes + " minute(s).";
+  //return num + " minutes = " + rhours + " hour(s) and " + rminutes + " minute(s).";
+  return rem_time = rhours +":"+rminutes;
+}
+function gotoRideHistory(){
+    checkConnection();
+    app.router.navigate('/ridehistory/');   
+}
+function showbackdrop(){ 
+  $(".popover.modal-in").css("display","block");
+  $(".popover-links").css("display","block");
+  $(".popover-backdrop.backdrop-in").css("visibility","visible");
+}
 // -------------------------------- L O G O U T ------------------------------ //
 function logOut(){
   checkConnection();

@@ -43,7 +43,7 @@
     "cordova-plugin-otp-auto-verification": {
       "PACKAGE_NAME": "com.phonegap.celcabs"
     },
-    "onesignal-cordova-plugin": {
+    "cordova-plugin-call-number": {
       "PACKAGE_NAME": "com.phonegap.celcabs"
     }
   },

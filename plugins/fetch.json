@@ -127,10 +127,10 @@
     "is_top_level": false,
     "variables": {}
   },
-  "onesignal-cordova-plugin": {
+  "cordova-plugin-call-number": {
     "source": {
       "type": "registry",
-      "id": "onesignal-cordova-plugin"
+      "id": "cordova-plugin-call-number"
     },
     "is_top_level": true,
     "variables": {}
