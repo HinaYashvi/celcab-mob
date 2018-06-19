@@ -23,10 +23,10 @@ var app = new Framework7({
     },
     onAjaxComplete: function (xhr) {
         app.hideIndicator();
-    }
-}); 
-
-var mainView = app.views.create('.view-main');
+      }
+});
+ 
+//var mainView = app.views.create('.view-main');
 /*var mainView = app.views.create('.view-main', {
   dynamicNavbar: true
 });*/
@@ -757,6 +757,11 @@ $$(document).on('page:init', '.page[data-name="ridehistory"]', function (e) {
     }); 
 
 });
+function showBackdrop(){
+  $(".popover.modal-in").css("display","block");
+  $(".popover-links").css("display",'block');
+  $(".popover-backdrop.backdrop-in").css("visibility","visible");
+}
 function getPayment(pnrno,sess_cust){
   //alert(pnrno); 
   var sess_city = window.localStorage.getItem("session_city");
