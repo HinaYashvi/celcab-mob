@@ -82,7 +82,10 @@ body{
 	color:darkgreen!important;
 	font-weight: bold!important;
 }
-
+.text-payment-btn{
+	color: #2156a7!important;
+    font-weight: bold!important;
+}
 .border-pink{
 	border: 1px dashed #CF1B42!important;
 }
@@ -96,6 +99,11 @@ body{
 	border: 1px dashed darkgreen!important;
     width: 70%;
     background-color: #9de69d;
+}
+.border-payment-btn{
+	border: 1px dashed #2156a7!important;
+    width: 70%;
+    background-color: #93b9f7; 
 }
 .text-white{
 	color:#fff!important;   
@@ -224,7 +232,7 @@ body{
 	right:7%!important;
 	left:60%!important;
 }
-.pinkbtn,.redbtn,.greenbtn,.drvbtn{
+.pinkbtn,.redbtn,.greenbtn,.drvbtn,.pymntbtn{
 	height: 18px!important;
     line-height: 18px!important;
 }
