@@ -47,12 +47,12 @@ $( document ).ready(function() {
     //document.addEventListener("backbutton", onBackKeyDown, false);
 
 
-    document.addEventListener("deviceready", appReady, false); 
+    document.addEventListener("deviceready", appReady, false);  
 
 
     // friz_fun();
 });
-function appReady(){
+function appReady(){  
 
       document.addEventListener("backbutton", function(e){ 
         alert("backbutton"+app.getCurrentView().activePage);
