@@ -2,7 +2,7 @@
 var $$ = Dom7;
 var app = new Framework7({  
   root: '#app', // App root element
-  pushState: true,
+ // pushState: true,
   name: 'CELCAB',  // App Name
   //id: 'com.myapp.test',  // App id
   id: 'com.phonegap.celcabs',
@@ -17,14 +17,15 @@ var app = new Framework7({
     rotateEffect: true,
     openIn: 'popover',
   },
-  /*on:{
+  on:{
     init: function () {
-      console.log("App Init");
+      //var page=app.getCurrentView().activePage;
+      //console.log("App Init"+page);
       //set corodova listener here
-      document.addEventListener("deviceready", checkStorage, false); 
-      document.addEventListener("backbutton", onBackKeyDown, false);
+      //document.addEventListener("deviceready", checkStorage, false); 
+      //document.addEventListener("backbutton", onBackKeyDown, false);
     }
-  },*/
+  },
 
   // Hide and show indicator during ajax requests
     onAjaxStart: function (xhr) {
@@ -35,10 +36,11 @@ var app = new Framework7({
       }
 });
  
-var mainView = app.views.create('.view-main');
-/*var mainView = app.views.create('.view-main', {
-  dynamicNavbar: true
-});*/
+//var mainView = app.views.create('.view-main');
+var mainView = app.views.create('.view-main', {
+  dynamicNavbar: true,
+  pushState: true,
+});
 
 $( document ).ready(function() {  
    // document.addEventListener("deviceready", checkStorage, false); 
@@ -53,10 +55,10 @@ $( document ).ready(function() {
 function appReady(){
 
       document.addEventListener("backbutton", function(e){ 
-        alert("backbutton");
+        alert("backbutton"+app.getCurrentView().activePage);
         var page=app.getCurrentView().activePage; app.hidePreloader(); 
         alert(page.name);
-        if(page.name=="index"){ 
+        if(page.name=="index" || page.name == "index.html" || page.name=="/index/"){ 
           //e.preventDefault(); 
           if(app.confirm("Do you want to Exit!")) { 
             navigator.app.clearHistory(); 
