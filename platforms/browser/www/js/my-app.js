@@ -2,7 +2,7 @@
 var $$ = Dom7;
 var app = new Framework7({  
   root: '#app', // App root element
-  pushState:true,  
+  pushState: true,
   name: 'CELCAB',  // App Name
   //id: 'com.myapp.test',  // App id
   id: 'com.phonegap.celcabs',
@@ -17,6 +17,15 @@ var app = new Framework7({
     rotateEffect: true,
     openIn: 'popover',
   },
+  /*on:{
+    init: function () {
+      console.log("App Init");
+      //set corodova listener here
+      document.addEventListener("deviceready", checkStorage, false); 
+      document.addEventListener("backbutton", onBackKeyDown, false);
+    }
+  },*/
+
   // Hide and show indicator during ajax requests
     onAjaxStart: function (xhr) {
         app.showIndicator();
@@ -26,19 +35,41 @@ var app = new Framework7({
       }
 });
  
-//var mainView = app.views.create('.view-main');
+var mainView = app.views.create('.view-main');
 /*var mainView = app.views.create('.view-main', {
   dynamicNavbar: true
 });*/
 
 $( document ).ready(function() {  
-    document.addEventListener("deviceready", checkStorage, false); 
-    document.addEventListener("backbutton", onBackKeyDown, false);
+   // document.addEventListener("deviceready", checkStorage, false); 
+    //document.addEventListener("backbutton", onBackKeyDown, false);
+
+
+    document.addEventListener("deviceready", appReady, false); 
+
+
     // friz_fun();
 });
+function appReady(){
+
+      document.addEventListener("backbutton", function(e){ 
+        alert("backbutton");
+        var page=app.getCurrentView().activePage; app.hidePreloader(); 
+        if(page.name=="index"){ e.preventDefault(); 
+          if(confirm("Do you want to Exit!")) { 
+            navigator.app.clearHistory(); 
+            navigator.app.exitApp(); 
+          } 
+        } else { 
+          navigator.app.backHistory() 
+        } 
+      }, false); 
+    }
 function onBackKeyDown() {
+  console.log("back key pressed"); 
+  alert("in back key");
        var page=app.getCurrentView().activePage; app.hidePreloader(); 
-       //alert(page.name);
+       alert(page.name);
       if(page.name=="index"){ 
            app.confirm('Do you want to Exit !', function () {
                   navigator.app.clearHistory(); navigator.app.exitApp();
@@ -60,7 +91,8 @@ function checkStorage()
     app.router.navigate('/index/');
   }else{
     //mainView.loadPage("bookride.html");
-    app.router.navigate('/ridehistory/');
+    //app.router.navigate('/ridehistory/');
+    app.router.navigate('/bookride/'); 
   }
   /*var sess_city = window.localStorage.getItem("session_city");
   var sess_cust = window.localStorage.getItem("session_custid");
@@ -374,6 +406,13 @@ $$(document).on('page:init', '.page[data-name="bookride"]', function (e) {
   //app.preloader.show();
   $(".item-floating-label").css('display','block');
   var sess_city = window.localStorage.getItem("session_city");
+  var sess_mobilenum = window.localStorage.getItem("session_mobilenum");
+  if(sess_city!=''){
+    $("#city option[value="+sess_city+"]").attr("selected","selected");
+  }
+  if(sess_mobilenum!=''){
+    $("#mobile_no").val(sess_mobilenum); 
+  }
   //app.preloader.show();
   app.dialog.preloader();
   var hourdata='';  
