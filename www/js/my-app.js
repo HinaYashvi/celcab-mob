@@ -17,7 +17,7 @@ var app = new Framework7({
     rotateEffect: true,
     openIn: 'popover',
   },
-  on:{
+  /*on:{
     init: function () {
       //var page=app.getCurrentView().activePage;
       //console.log("App Init"+page);
@@ -25,7 +25,7 @@ var app = new Framework7({
       //document.addEventListener("deviceready", checkStorage, false); 
       //document.addEventListener("backbutton", onBackKeyDown, false);
     }
-  },
+  },*/
 
   // Hide and show indicator during ajax requests
     onAjaxStart: function (xhr) {
@@ -43,11 +43,11 @@ var mainView = app.views.create('.view-main', {
 });
 
 $( document ).ready(function() {  
-   // document.addEventListener("deviceready", checkStorage, false); 
+    document.addEventListener("deviceready", checkStorage, false); 
     //document.addEventListener("backbutton", onBackKeyDown, false);
 
-
-    document.addEventListener("deviceready", appReady, false);  
+    document.addEventListener("backbutton", onBackKeyDown, false);
+    //document.addEventListener("deviceready", appReady, false);  
 
 
     // friz_fun();
@@ -55,7 +55,18 @@ $( document ).ready(function() {
 function appReady(){  
 
       document.addEventListener("backbutton", function(e){ 
-        alert("backbutton"+app.getCurrentView().activePage);
+        if($.mobile.activePage.is('#index')){
+        /* 
+         Event preventDefault/stopPropagation not required as adding backbutton
+          listener itself override the default behaviour. Refer below PhoneGap link.
+        */
+        //e.preventDefault();
+        navigator.app.exitApp();
+    }
+    else {
+        navigator.app.backHistory()
+    }
+        /*alert("backbutton"+app.getCurrentView().activePage);
         var page=app.getCurrentView().activePage; app.hidePreloader(); 
         alert(page.name);
         if(page.name=="index" || page.name == "index.html" || page.name=="/index/"){ 
@@ -66,7 +77,7 @@ function appReady(){
           } 
         } else { 
           navigator.app.backHistory() 
-        } 
+        } */
       }, false); 
     }
 function onBackKeyDown() {
