@@ -55,8 +55,10 @@ function appReady(){
       document.addEventListener("backbutton", function(e){ 
         alert("backbutton");
         var page=app.getCurrentView().activePage; app.hidePreloader(); 
-        if(page.name=="index"){ e.preventDefault(); 
-          if(confirm("Do you want to Exit!")) { 
+        alert(page.name);
+        if(page.name=="index"){ 
+          //e.preventDefault(); 
+          if(app.confirm("Do you want to Exit!")) { 
             navigator.app.clearHistory(); 
             navigator.app.exitApp(); 
           } 
