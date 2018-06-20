@@ -46,8 +46,8 @@ $( document ).ready(function() {
     document.addEventListener("deviceready", checkStorage, false); 
     //document.addEventListener("backbutton", onBackKeyDown, false);
 
-    document.addEventListener("backbutton", onBackKeyDown, false);
-    //document.addEventListener("deviceready", appReady, false);  
+    //document.addEventListener("backbutton", onBackKeyDown, false);
+    document.addEventListener("deviceready", appReady, false);  
 
 
     // friz_fun();
