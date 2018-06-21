@@ -29,6 +29,11 @@ var routes = [
     url: './ridehistory.html',
     name: 'ridehistory',
   },
+  {
+    path: '/internet/',
+    url: './internet.html',
+    name: 'internet',
+  },
   
  /*{
       path: '/bookride/',

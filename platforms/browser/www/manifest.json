@@ -6,7 +6,13 @@
   "version": "com.phonegap.celcabs",
   "description": "CELCABS - TEST MOBILE APPLICATION.",
   "author": "Celcabs Team",
-  "icons": [],
+  "icons": [
+    {
+      "src": "icon.png",
+      "type": "image/png",
+      "sizes": "undefinedxundefined"
+    }
+  ],
   "start_url": "index.html",
   "theme_color": "#2196f3"
 }

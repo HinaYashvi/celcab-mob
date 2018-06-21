@@ -2,20 +2,22 @@
 var $$ = Dom7;
 var app = new Framework7({  
   root: '#app', // App root element
- // pushState: true,
+  pushState: true,
   name: 'CELCAB',  // App Name
   //id: 'com.myapp.test',  // App id
   id: 'com.phonegap.celcabs',
   panel: {
     swipe: 'left', // Enable swipe panel
   },
+  //theme:'material',
+  //material: true, //enable Material theme
   routes: routes,
   clicks: {
     externalLinks: '.external',
   },
   picker: {
     rotateEffect: true,
-    openIn: 'popover',
+    openIn: 'popover', 
   },
   /*on:{
     init: function () {
@@ -29,82 +31,56 @@ var app = new Framework7({
 
   // Hide and show indicator during ajax requests
     onAjaxStart: function (xhr) {
-        app.showIndicator();
+      app.showIndicator();
     },
     onAjaxComplete: function (xhr) {
-        app.hideIndicator();
-      }
+      app.hideIndicator();
+    }
 });
  
 //var mainView = app.views.create('.view-main');
-var mainView = app.views.create('.view-main', {
+/*var mainView = app.views.create('.view-main', {
   dynamicNavbar: true,
   pushState: true,
-});
+});*/
 
 $( document ).ready(function() {  
     document.addEventListener("deviceready", checkStorage, false); 
-    //document.addEventListener("backbutton", onBackKeyDown, false);
-
-    //document.addEventListener("backbutton", onBackKeyDown, false);
-    document.addEventListener("deviceready", appReady, false);  
-
-
-    // friz_fun();
+   // document.addEventListener("backbutton", onBackKeyDown, false);
 });
-function appReady(){  
 
-      document.addEventListener("backbutton", function(e){ 
-        if($.mobile.activePage.is('#index')){
-        /* 
-         Event preventDefault/stopPropagation not required as adding backbutton
-          listener itself override the default behaviour. Refer below PhoneGap link.
-        */
-        //e.preventDefault();
-        navigator.app.exitApp();
-    }
-    else {
-        navigator.app.backHistory()
-    }
-        /*alert("backbutton"+app.getCurrentView().activePage);
-        var page=app.getCurrentView().activePage; app.hidePreloader(); 
-        alert(page.name);
-        if(page.name=="index" || page.name == "index.html" || page.name=="/index/"){ 
-          //e.preventDefault(); 
-          if(app.confirm("Do you want to Exit!")) { 
-            navigator.app.clearHistory(); 
-            navigator.app.exitApp(); 
-          } 
-        } else { 
-          navigator.app.backHistory() 
-        } */
-      }, false); 
-    }
-function onBackKeyDown() {
-  console.log("back key pressed"); 
+    
+/*function onBackKeyDown() {
+  //console.log("back key pressed"); 
   alert("in back key");
-       var page=app.getCurrentView().activePage; app.hidePreloader(); 
-       alert(page.name);
-      if(page.name=="index"){ 
-           app.confirm('Do you want to Exit !', function () {
-                  navigator.app.clearHistory(); navigator.app.exitApp();
-            });
-       } 
-       else
-       { 
-          $$(".back").click();
-       }
-}
+  //var view = app.views.current;
+  //console.log (app.view.name);
+  //var page = app.getCurrentView().activePage;
+  //var page = app.views.main.router.activePage;alert("page---"+page);
+  var page=app.getCurrentView().activePage; 
+  //app.hidePreloader(); 
+  //alert(page.name);
+  if(page.name=="index"){  
+    app.confirm('Do you want to Exit !', function () {
+      navigator.app.clearHistory(); navigator.app.exitApp();
+    });
+  }else{ 
+    $$(".back").click();
+  }
+}*/
 
-function checkStorage()
-{ 
+function checkStorage(){  
   checkConnection();  
   var sess_mobilenum = window.localStorage.getItem("session_mobilenum");
+  //alert(sess_mobilenum);
   if(sess_mobilenum==null) 
   {
+    //alert("if");
     //mainView.loadPage("index.html");
-    app.router.navigate('/index/');
+    //app.router.navigate('/index/');
+    app.router.navigate('/');
   }else{
+    //alert("else");
     //mainView.loadPage("bookride.html");
     //app.router.navigate('/ridehistory/');
     app.router.navigate('/bookride/'); 
@@ -196,16 +172,15 @@ function checkStorage()
   /*var notificationOpenedCallback = function(jsonData) {
     console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
   };*/
-  /* window.plugins.OneSignal.startInit("00601283-97fa-455d-ae71-0e064926d8e2").handleNotificationOpened(notificationOpenedCallback).endInit(); */
-
-  
+  /* window.plugins.OneSignal.startInit("00601283-97fa-455d-ae71-0e064926d8e2").handleNotificationOpened(notificationOpenedCallback).endInit(); */ 
 }
 // --------------------------- C H E C K  I N T E R N E T  C O N N E C T I O N --------------------- //
 function checkConnection() {
     var networkState = navigator.connection.type;
     //alert(networkState);
     if(networkState=='none'){  
-        window.location.href="internet.html";
+        //window.location.href="internet.html";
+        app.router.navigate('/internet/'); 
     }
 }
 // ------------------------------- D A T A B A S E  C O N N E C T I O N ------------------------------- //

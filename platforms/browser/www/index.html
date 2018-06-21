@@ -13,13 +13,13 @@
   <!--link rel="stylesheet" href="css/app.css"-->
   <link rel="apple-touch-icon" href="img/f7-icon-square.png">
   <link rel="stylesheet" href="css/framework7-icons.css">
-  <link rel="stylesheet" href="css/framework7.css">
+  <link rel="stylesheet" href="css/framework7.css"> 
   <link rel="icon" href="img/f7-icon.png">
 </head>
 <body>  
   <div id="app">
       <div class="statusbar"></div>   
-      <div class="view view-main view-init ios-edges" data-url="/">
+      <div class="view view-main view-init ios-edges" data-url="/"> 
         <div class="page" data-name="index">    
 
           <div class="page-content">
@@ -45,11 +45,9 @@
           </div-->
           <form class="loginForm" id="loginForm">
           <div class="row center">
-            <div class="col-100 tablet-33">
-              <!--a href="#" class="button mt-5" id="scan">Scan QR Code</a-->
+            <div class="col-100 tablet-11">
               <center><img src="img/logo.png" class="mt-100 w-75"></center>
-            </div>
-            
+            </div>            
               <div class="list form-div no-hairlines">
                 <ul>
                   <li class="item-content item-input">  
@@ -89,11 +87,11 @@
                   <li class="item-content item-input">
                       <div class="item-inner">
                           <div class="item-input-wrap">
-                            <!-- "href="/bookride/" -->
-                              <a class="col button color-bluebtn text-white no-radius mt-p-10" onclick="checklogin();">LOG IN</a>
+                              <a href="#" onclick="checklogin();" class="col button color-bluebtn text-white no-radius mt-p-10" >LOG IN</a>
+                              
                           </div>
                       </div>
-                  </li>
+                  </li> 
                   <li class="item-content item-input">
                       <div class="item-inner">
                           <div class="item-input-wrap">
@@ -102,8 +100,7 @@
                       </div>
                   </li>
                 </ul>
-              </div>
-            
+              </div>            
           </div>
           </form>          
         </div>
@@ -136,16 +133,16 @@
         //app.initialize();
         //(function () {
               
-            if (Framework7.prototype.device.android) {
+            if (Framework7.prototype.device.android) { 
                  //alert("android");
-                Dom7('head').append(
-                  '<link rel="stylesheet" href="css/framework7.md.css">' +
+                Dom7('head').append(                  
                   '<link rel="stylesheet" href="css/my-app.material.css">' 
-              );
+                );
             }else{
-               // alert("ios");
-                '<link rel="stylesheet" href="css/framework7.ios.css">' +
+                //alert("ios");
+                Dom7('head').append(
                 '<link rel="stylesheet" href="css/my-app.ios.css">'
+                );
             }
        // });
 

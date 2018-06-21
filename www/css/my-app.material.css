@@ -252,9 +252,12 @@ body{
 	z-index: 3;
     top: 28px;
 }
-
+.bookRide{
+	height: 600px!important;
+	overflow-x: scroll!important;
+}
 // ----------------------------- RESPONSIVE -------------------------- //
-@media only screen and (max-width: 645px) and (min-width: 635px)   {
+@media only screen and (max-width: 645px) and (min-width: 635px){
 .btime{
 	position: absolute!important;
 	top:63px!important;
@@ -262,3 +265,5 @@ body{
 	left:80%!important;
 }	
 }
+
+
