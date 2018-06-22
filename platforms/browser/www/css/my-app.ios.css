@@ -4,20 +4,33 @@ body{
 .ios .page {
     background: #fff!important;
 }
-.ios .button{
+/*.ios .button{
 	border:none!important;
-}
+}*/
 .ios .navbar,.ios .navbar a{
 	color:#fff!important;
 }
+
+.ios .button{
+	line-height: 33px!important;
+    height: 35px!important;
+}
+
+.ip-wrap:after{
+	content: none!important; 
+}
+
 .mt-5{
 	margin-top: 5px!important;
 }
 .mt-100{
-	margin-top: 100px;
+	margin-top: 100px!important;
 }
 .mt-p-10{
-	margin-top: 10%;
+	margin-top: 10%!important;
+}
+.mt-p-25{
+	margin-top: 25%!important;
 }
 .mt-p-3{
 	margin-top: 3%!important;
@@ -62,8 +75,8 @@ body{
 	width:100%;
 }
 .form-div{
-	padding: 2% 0 0 8%;
-	width:85%;
+	padding: 2% 0 0 11%!important;
+    width: 76%!important;
 }
 .md .item-input-wrap:after{
 	background-color: rgba(0, 0, 0, 0.85)!important;	
@@ -76,9 +89,11 @@ body{
 
 .color-bluebtn{
 	background-color: #233671;
+	border:none!important;
 }
 .color-signup{
 	background-color: #CF1B42;
+	border:none!important;
 }
 .toolbar-bluecolor,.titleclr,.passcnt{
 	background-color: #233671!important;
@@ -275,5 +290,32 @@ body{
 	top:63px!important;
 	right:14%!important;
 	left:80%!important;
+}	
+}
+
+
+
+@media only screen and (max-width: 770px) and (min-width: 760px)   {
+.mt-100{
+	margin-top:250px!important;
+}	
+}
+
+@media only screen and (max-width: 415px) and (min-width: 400px)   {
+.mt-100{
+	margin-top:150px!important;
+}	
+}
+
+
+@media only screen and (max-width: 380px) and (min-width: 170px)   {
+.mt-100{
+	margin-top:130px!important;
+}	
+}
+
+@media only screen and (max-width: 325px) and (min-width: 320px)   {
+.mt-100{
+	margin-top:80px!important;
 }	
 }

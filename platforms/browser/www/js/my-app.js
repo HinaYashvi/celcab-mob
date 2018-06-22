@@ -46,7 +46,7 @@ var app = new Framework7({
 
 $( document ).ready(function() {  
     document.addEventListener("deviceready", checkStorage, false); 
-   // document.addEventListener("backbutton", onBackKeyDown, false);
+    //document.addEventListener("backbutton", onBackKeyDown, false);
 });
 
     
@@ -57,21 +57,37 @@ $( document ).ready(function() {
   //console.log (app.view.name);
   //var page = app.getCurrentView().activePage;
   //var page = app.views.main.router.activePage;alert("page---"+page);
-  var page=app.getCurrentView().activePage; 
+  //var page=app.getCurrentView().activePage; 
   //app.hidePreloader(); 
-  //alert(page.name);
-  if(page.name=="index"){  
+  
+  
+
+
+  /*if(data.name=="index"){  
     app.confirm('Do you want to Exit !', function () {
       navigator.app.clearHistory(); navigator.app.exitApp();
     });
   }else{ 
     $$(".back").click();
-  }
-}*/
+  }*/
+//}
 
+function onConfirmExit(button) {
+    if(button==2){ //If User select a No, then return back;
+        return;
+    }else{
+        //navigator.app.clearHistory(); 
+        navigator.app.exitApp(); // If user select a Yes, quit from the app.
+    }
+}
 function checkStorage(){  
   checkConnection();  
   var sess_mobilenum = window.localStorage.getItem("session_mobilenum");
+  document.addEventListener("backbutton", function (e) {
+    e.preventDefault(); 
+    navigator.notification.confirm("Do you want to Exit ?", onConfirmExit, "Exit Application");
+  }, false );
+
   //alert(sess_mobilenum);
   if(sess_mobilenum==null) 
   {
