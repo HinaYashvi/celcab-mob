@@ -12,10 +12,13 @@ body{
 }
 
 .ios .button{
-	line-height: 33px!important;
-    height: 35px!important;
-}
+	line-height: 33px;
+    height: 35px;
 
+}
+.new-wd{
+	width: 102%!important;
+}
 .ip-wrap:after{
 	content: none!important; 
 }
@@ -29,7 +32,7 @@ body{
 .mt-p-10{
 	margin-top: 10%!important;
 }
-.mt-p-25{
+.mt-p-25,.mt-25{
 	margin-top: 25%!important;
 }
 .mt-p-3{
@@ -40,6 +43,9 @@ body{
 }
 .ml-2{
 	margin-left: 2%!important;
+}
+.ml-100{
+    margin-left: 100%!important;
 }
 .ml-3 {
     margin-left: 3%!important;
@@ -195,6 +201,7 @@ body{
 .ib{
 	color: #CF1B42;
 	font-weight: bold;
+	margin-left: 10%;
 }
 .md .checkbox input[type=checkbox]:checked~i, .md label.item-checkbox input[type=checkbox]:checked~* .icon-checkbox, .md label.item-checkbox input[type=checkbox]:checked~.icon-checkbox{
 	background-color: #CF1B42!important;
@@ -251,11 +258,11 @@ body{
 .flt-rt{
 	float: right!important;
 }
-.bgstyle{
+/*.bgstyle{
 	left: 73%!important;
     margin-left: -68px!important;
     top: 6px!important;
-}
+}*/
 .btime{
 	position: absolute!important;
 	top:63px!important;
@@ -272,7 +279,7 @@ body{
 }
 .img{
 	position: absolute;
-  	top: 25px;
+  	top: 20%;
   	left: 25px;
 }
 .img1{
@@ -282,7 +289,75 @@ body{
 	z-index: 3;
     top: 28px;
 }
+i.icon{
+	position: absolute!important;
+}
+/*.icon .badge, .f7-icons .badge{
+	position: initial!important;
+}*/
+.ios .tabbar-labels{
+	position: sticky!important;
+	top: 4%!important;
+}
+.tabbar-labels a.tab-link, .tabbar-labels a.link{
+	-webkit-justify-content: center;
+}
+.ios .tabbar a.tab-link, .ios .tabbar-labels a.tab-link, .ios .tabbar a.link, .ios .tabbar-labels a.link
+{
+	width: 100%!important;
+}
+.ios .tabbar a.tab-link, .ios .tabbar-labels a.tab-link{
+	text-transform: uppercase!important;
+}
+.ios .tabbar a, .ios .tabbar-labels a{
+	color: #fff!important;
+}
+.ios .tabbar-labels {
+    height: 70px;
+}
+.ios .toolbar-inner{
+	padding: 0px!important;
+}
 
+/*.ios .tabbar-labels a .tab-link.tab-link-active{
+	background: #e45775;
+
+}*/
+.ios .tabbar .tab-link-active, .ios .tabbar-labels .tab-link-active{
+	background: #e45775;
+	/*position: absolute;
+    bottom: 0;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.5);
+    -webkit-transition-duration: 300ms;
+    transition-duration: 300ms;
+    left: 0;*/
+}
+.ios .tabbar i.icon, .ios .tabbar-labels i.icon {
+    height: 50px;
+}
+.ios .tabbar-labels a.tab-link i + span, .ios .tabbar-labels a.link i + span {
+    margin: 3% -14px 0 0%;
+}
+/*.f7-icons .badge{
+	position: inherit!important;
+}*/
+.icon .badge, .f7-icons .badge{
+	    margin-left: -33px;
+    top: -9px;
+    position: relative;
+}
+.tabs-animated-wrap > .tabs{
+	margin-top: 7%;
+}
+.drvdet{
+ padding : 2% 6% 0 0!important;
+     width: 75%!important;
+}
+
+/*.ios .list .item-content{
+	border-bottom: 1px dashed darkgrey!important;
+}*/
 // ----------------------------- RESPONSIVE -------------------------- //
 @media only screen and (max-width: 645px) and (min-width: 635px)   {
 .btime{
@@ -292,30 +367,51 @@ body{
 	left:80%!important;
 }	
 }
-
-
-
-@media only screen and (max-width: 770px) and (min-width: 760px)   {
+@media only screen and (max-width: 770px) and (min-width: 765px)   {
 .mt-100{
-	margin-top:250px!important;
-}	
+	margin-top:210px!important;
 }
-
+.ios .block{
+	padding: 0 15px!important;
+}
+.mt-p-5 {
+    margin-top: 15%!important;
+}
+}
 @media only screen and (max-width: 415px) and (min-width: 400px)   {
 .mt-100{
 	margin-top:150px!important;
 }	
 }
-
-
 @media only screen and (max-width: 380px) and (min-width: 170px)   {
 .mt-100{
 	margin-top:130px!important;
 }	
 }
-
 @media only screen and (max-width: 325px) and (min-width: 320px)   {
 .mt-100{
 	margin-top:80px!important;
 }	
+}
+@media only screen and (max-width: 1025px) and (min-width: 1000px){
+.ios .tabbar i.icon, .ios .tabbar-labels i.icon {
+    height: 45px;
+}
+.ios .tabbar-labels{
+	top: 5%!important;
+}
+.ios .tabbar-labels a.tab-link{
+	padding-top: 10px!important;
+}
+.ios .tabbar-labels a.tab-link i + span, .ios .tabbar-labels a.link i + span {
+    margin: 1% -14px 0 0%;
+}
+#bookRide{
+	height: 700px!important;
+	overflow-y: scroll!important;
+}
+.mt-25 {
+    margin-top: 13%!important;
+}
+
 }

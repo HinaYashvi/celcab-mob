@@ -256,6 +256,9 @@ body{
 	height: 600px!important;
 	overflow-x: scroll!important;
 }
+.md .navbar .title{
+	margin: 0 30px;
+}
 // ----------------------------- RESPONSIVE -------------------------- //
 @media only screen and (max-width: 645px) and (min-width: 635px){
 .btime{
@@ -264,6 +267,39 @@ body{
 	right:14%!important;
 	left:80%!important;
 }	
+
 }
+
+
+
+
+
+@media only screen and (max-width: 650px) and (min-width: 630px){
+.md .navbar .title {
+    margin: 0 25%!important;
+}
+.bookRide {
+    height: 350px!important;
+    overflow-x: scroll!important;
+}
+.w-75 {
+    width: 80%;
+}	
+#loginForm{
+	height: 310px!important;
+    overflow-x: scroll!important;
+}
+}
+@media only screen and (max-width: 740px) and (min-width: 730px){  
+.bookRide {
+    height: 400px!important;
+    overflow-x: scroll!important;
+}
+#loginForm{
+	height: 700px!important;
+    overflow-x: scroll!important;
+}
+}
+
 
 

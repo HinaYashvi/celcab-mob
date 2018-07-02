@@ -12,7 +12,7 @@ var routes = [
   },*/
   {
     path: '/signup/',
-    url: './signup.html',
+    url: './signup.html', 
   },
   {
     path: '/verifyotp/',

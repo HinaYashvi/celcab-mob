@@ -87,18 +87,12 @@ function checkStorage(){
     e.preventDefault(); 
     navigator.notification.confirm("Do you want to Exit ?", onConfirmExit, "Exit Application");
   }, false );
-
-  //alert(sess_mobilenum);
   if(sess_mobilenum==null) 
   {
-    //alert("if");
     //mainView.loadPage("index.html");
     //app.router.navigate('/index/');
     app.router.navigate('/');
   }else{
-    //alert("else");
-    //mainView.loadPage("bookride.html");
-    //app.router.navigate('/ridehistory/');
     app.router.navigate('/bookride/'); 
   }
   /*var sess_city = window.localStorage.getItem("session_city");
@@ -195,12 +189,12 @@ function checkConnection() {
     var networkState = navigator.connection.type;
     //alert(networkState);
     if(networkState=='none'){  
-        //window.location.href="internet.html";
         app.router.navigate('/internet/'); 
     }
 }
 // ------------------------------- D A T A B A S E  C O N N E C T I O N ------------------------------- //
 function conn_db(city){
+  var city = city.trim();
   checkConnection();
   //console.log(city);
   var url='http://128.199.226.85/mobileapp_celcabs/appcontroller/db_conn';     
@@ -253,44 +247,47 @@ function getCustInfo(mob_number){
 // ---------------------------- SIGNUP : S E N D  O T P  &  P A S S W O R D ---------------------------- //
 function sendingPassOTP(){ 
   checkConnection();
-  var sess_city = window.localStorage.getItem("session_city");
-  var mob_number = $("#mob_number").val();
-
-  var hidden_ctype=$("#hidden_ctype").val();
-   
-  var url='http://128.199.226.85/mobileapp_celcabs/appcontroller/getPassOTP';
-  $.ajax({
-      'type':'POST', 
-      'url':url,
-      'data':{'mob_number':mob_number,'city':sess_city},
-      success:function(response){ 
-        console.log(response);
-        if(response){
-          //alert(response+"@@@@@");
-         // app.router.navigate('/verifyotp/');
-        }
-      }
-  });
-
-  if(hidden_ctype == 'newcust'){
-    var signupForm = $(".signupForm").serialize();
-    var url='http://128.199.226.85/mobileapp_celcabs/appcontroller/registerCustomer'; 
-    $.ajax({
-      'type':'POST', 
-      'url':url,
-      'data':signupForm,
-      success:function(response){ 
-        console.log(response);
-        if(response){
-          console.log(response);
-          window.localStorage.setItem("reg_custid", response);
-          app.router.navigate('/verifyotp/');
-        }
-      }
-    });
+  if (!$$('#signupForm')[0].checkValidity()) { 
+       // alert('Check Validity!');
+       // console.log('Check Validity!');
   }else{
-          app.router.navigate('/verifyotp/');
-  } 
+    var sess_city = window.localStorage.getItem("session_city");
+    var mob_number = $("#mob_number").val();
+    var hidden_ctype=$("#hidden_ctype").val();     
+    var url='http://128.199.226.85/mobileapp_celcabs/appcontroller/getPassOTP';
+    $.ajax({
+        'type':'POST', 
+        'url':url,
+        'data':{'mob_number':mob_number,'city':sess_city},
+        success:function(response){ 
+          console.log(response);
+          if(response){
+            //alert(response+"@@@@@");
+           // app.router.navigate('/verifyotp/');
+          }
+        }
+    });
+
+    if(hidden_ctype == 'newcust'){
+      var signupForm = $(".signupForm").serialize();
+      var url='http://128.199.226.85/mobileapp_celcabs/appcontroller/registerCustomer'; 
+      $.ajax({
+        'type':'POST', 
+        'url':url,
+        'data':signupForm,
+        success:function(response){ 
+          console.log(response);
+          if(response){
+            console.log(response);
+            window.localStorage.setItem("reg_custid", response);
+            app.router.navigate('/verifyotp/');
+          }
+        }
+      });
+    }else{
+            app.router.navigate('/verifyotp/');
+    } 
+  }
 }  
 
 $$(document).on('page:init', '.page[data-name="verifyotp"]', function (e) {
@@ -322,21 +319,24 @@ function verifyOTP(){
   var sess_city = window.localStorage.getItem("session_city");
   var sess_cust = window.localStorage.getItem("reg_custid");
   var otp=$('#otp').val();
+  var city = sess_city.trim();
   var url='http://128.199.226.85/mobileapp_celcabs/appcontroller/verifiOTP';
   $.ajax({
-      'type':'POST', 
+      'type':'POST',  
       'url':url,
-      'data':{'otp':otp,'city':sess_city,'sess_cust':sess_cust},
+      'data':{'otp':otp,'city':city,'sess_cust':sess_cust},
       success:function(response){ 
         console.log(response);
-        if(response == 'updated'){
+        var res = response.trim();
+        //alert(response.trim());
+        if(res=='updated'){
           app.router.navigate('/index/');
-        }else if(response == 'wrongotp'){
+        }else if(res == 'wrongotp'){
           var toastTop = app.toast.create({
             text: 'OTP is wrong.Please check OTP again.',
             position: 'top',
             closeTimeout: 4000,
-          });
+          }); 
           toastTop.open();
         }
       }
@@ -348,23 +348,35 @@ $$(document).on('page:init', '.page[data-name="index"]', function (e) {
   var sess_cust = window.localStorage.getItem("reg_custid");
   //alert(sess_cust);
   var sess_city = window.localStorage.getItem("session_city");
-  if(sess_cust!=null){
-    //alert("Create full-layout notification");
-    var notificationFull = app.notification.create({
-      //icon: '<i class="icon demo-icon">7</i>',
-      title: 'CELCABS',
-      titleRightText: 'now',
-      subtitle: 'OTP Verified',
-      text: 'OTP verification is done.Please Login using password sent with OTP.',
-      closeTimeout: 5000,
-    });
-    //notificationFull.open();
-    setTimeout(function() { 
-      notificationFull.open();
-    }, 2000);
-  }else{
-    //alert("no notification");
-  }
+  var checkreg_status = "http://128.199.226.85/mobileapp_celcabs/appcontroller/checkRegStatus";
+  $.ajax({
+      'type':'POST',  
+      'url':checkreg_status,
+      'data':{'city':sess_city,'sess_cust':sess_cust},
+      success:function(reg_response){
+        //console.log(reg_response);
+        var Verified = reg_response.trim();
+        if(sess_cust!=null && Verified == 'Verified'){
+          //alert("Create full-layout notification");
+          var notificationFull = app.notification.create({
+            //icon: '<i class="icon demo-icon">7</i>',
+            title: 'CELCABS',
+            titleRightText: 'now',
+            subtitle: 'OTP Verified',
+            text: 'OTP verification is done.Please Login using password sent with OTP.',
+            closeTimeout: 5000,
+          });
+          //notificationFull.open();
+          setTimeout(function() { 
+            notificationFull.open();
+          }, 2000);
+        }else{
+          //alert("no notification");
+        }
+      }
+  });
+  //alert(Verified+"****");
+  
 });
 // ------------------------------- LOGIN : C H E C K L O G I N ------------------------------- //
 function checklogin(){
@@ -372,7 +384,17 @@ function checklogin(){
     checkConnection();
     //mainView.loadPage("./bookride.html");
     //homeView.loadPage("bookride.html");
-    var mobile_number = $("#mobile_number").val();
+
+    //$$('.lgbtn').on('click', function(e){
+      //e.preventDefault();
+      if (!$$('#loginForm')[0].checkValidity()) { 
+       // alert('Check Validity!');
+       // console.log('Check Validity!');
+
+      } else {
+
+        //ajax request here
+        var mobile_number = $("#mobile_number").val();
     var form = $(".loginForm").serialize();
     //console.log(form);
     //var base_url='http://128.199.226.85/celcabsapp/'; 
@@ -398,6 +420,13 @@ function checklogin(){
         }
       }
     }); 
+       // return false;
+
+      }
+
+    //});
+
+    
     //var url = decodeURIComponent(base_url.replace('/proxy/', ''));
     //app.showIndicator();
           
@@ -630,44 +659,49 @@ $$(document).on('page:init', '.page[data-name="bookride"]', function (e) {
 // -------------------- B O O K  R I D E --------------------------//
 
 function bookmyride(){
-  checkConnection();
-  app.router.navigate('/ridehistory/');
-  //var sess_city = window.localStorage.getItem("session_city");
-  var sess_cust = window.localStorage.getItem("session_custid");
-  var sess_mobilenum = window.localStorage.getItem("session_mobilenum");
-  var bookRideForm=$(".bookRide").serialize();
-  //console.log(bookRideForm);
-  var city = $("#city").val();
+  checkConnection(); 
+  if (!$$('#bookRide')[0].checkValidity()) { 
+       // alert('Check Validity!');
+       // console.log('Check Validity!');
+  }else{
+    app.router.navigate('/ridehistory/');
+    //var sess_city = window.localStorage.getItem("session_city");
+    var sess_cust = window.localStorage.getItem("session_custid");
+    var sess_mobilenum = window.localStorage.getItem("session_mobilenum");
+    var bookRideForm=$(".bookRide").serialize();
+    //console.log(bookRideForm);
+    var city = $("#city").val();
 
-  var postdata=bookRideForm+'&city='+city+'&sess_cust='+sess_cust+'&sess_mobilenum='+sess_mobilenum;
-  //console.log(postdata);
-  //var stringify=JSON.stringify(postdata);
-  //console.log(stringify);
-  var url = 'http://128.199.226.85/mobileapp_celcabs/appcontroller/bookMyRide';
-  $.ajax({
-        'type':'POST', 
-        'url':url,
-        //'dataType':'json',
-        'data':postdata,
-        //'data':{'city':city,'sess_cust':sess_cust,'sess_mobilenum':sess_mobilenum},
-        success:function(data){
-          //alert(data);
-          //console.log(data+"::");   
-          if(data=='inserted'){
-            /*var ridebooktoastTop = app.toast.create({
-              text: 'Ride booked successfully.',
-              position: 'top',
-              closeTimeout: 4000,
-              closeButton: true
-            });*/
-            $('#bookRide')[0].reset();
-            //ridebooktoastTop.open();
-              app.dialog.alert("Ride booked successfully",function (){
-                app.router.navigate('/ridehistory/');
-            });
+    var postdata=bookRideForm+'&city='+city+'&sess_cust='+sess_cust+'&sess_mobilenum='+sess_mobilenum;
+    //console.log(postdata);
+    //var stringify=JSON.stringify(postdata);
+    //console.log(stringify);
+    var url = 'http://128.199.226.85/mobileapp_celcabs/appcontroller/bookMyRide';
+    $.ajax({
+          'type':'POST', 
+          'url':url,
+          //'dataType':'json',
+          'data':postdata,
+          //'data':{'city':city,'sess_cust':sess_cust,'sess_mobilenum':sess_mobilenum},
+          success:function(data){
+            //alert(data);
+            console.log(data+"::");      
+            if(data=='inserted'){ 
+              /*var ridebooktoastTop = app.toast.create({
+                text: 'Ride booked successfully.',
+                position: 'top',
+                closeTimeout: 4000,
+                closeButton: true
+              });*/
+              $('#bookRide')[0].reset();
+              //ridebooktoastTop.open();
+                app.dialog.alert("Ride booked successfully",function (){
+                  app.router.navigate('/ridehistory/');
+              });
+            }
           }
-        }
-  });
+    });
+  }
 }
 $$(document).on('page:init', '.page[data-name="ridehistory"]', function (e) {
   checkConnection();
@@ -749,7 +783,7 @@ $$(document).on('page:init', '.page[data-name="ridehistory"]', function (e) {
             //alert(fromto_location+"pickup");
             //alert(fromto_city+"city");
             //upcmridedata+='<li><a href="#" class="item-link item-content"><div class="item-media"><img src="img/cabs/taxi3.png" height="60" width="50"></div><div class="item-inner"><div class="item-title"><div class="item-header text-left">Ride Dt:'+booking_dt+" "+booking_tm+'</div>| John Doe</div><div class="item-after">Edit</div></div></a></li>';
-           upcmridedata+='<li><a href="#" class="item-link item-content"><div class="item-media"><img src="img/cabs/taxi3.png" height="50" width="40" class="img img1"><button class="col button button-small button-outline text-pink fs-8 border-pink pinkbtn img2">SCHEDULED</button></div><div class="item-inner"><div class="item-title"><div class="item-header text-left"><i class="f7-icons color-black fs-12 mr-5 ml-3">calendar</i>'+rpt_dt+'</div><img src="img/cabs/from.png" height="20" width="23" class="mr-5 mt-5"><span class="fs-12">'+from_location+" ,"+from_city+'</span><br/><img src="img/cabs/mapmarker4.png" height="20" width="23" class="mr-5 mt-5"><span class="fs-12">'+to_location+" ,"+to_city+'</span><br/>'+driver_detbtn+" "+payment_btn+'</div><div class="item-after"><!--button class="col button button-small button-outline text-pink fs-8 border-pink pinkbtn">SCHEDULED</button--></div><div class="item-after fs-12"><i class="f7-icons color-black fs-12 mr-5 mt-5">time</i>'+rpt_tm+'</div></div></a></li>'; 
+            upcmridedata+='<li><a href="#" class="item-link item-content"><div class="item-media"><img src="img/cabs/taxi3.png" height="50" width="40" class="img img1"><button class="col button button-small button-outline text-pink fs-8 border-pink pinkbtn img2">SCHEDULED</button></div><div class="item-inner"><div class="item-title"><div class="item-header text-left"><i class="f7-icons color-black fs-12 mr-5 ml-3">calendar</i>'+rpt_dt+'</div><img src="img/cabs/from.png" height="20" width="23" class="mr-5 mt-5"><span class="fs-12">'+from_location+" ,"+from_city+'</span><br/><img src="img/cabs/mapmarker4.png" height="20" width="23" class="mr-5 mt-5"><span class="fs-12">'+to_location+" ,"+to_city+'</span><br/>'+driver_detbtn+" "+payment_btn+'</div><div class="item-after"><!--button class="col button button-small button-outline text-pink fs-8 border-pink pinkbtn">SCHEDULED</button--></div><div class="item-after fs-12"><i class="f7-icons color-black fs-12 mr-5 mt-5">time</i>'+rpt_tm+'</div></div></a></li>'; 
              $("#upcomigrides").html(upcmridedata);
 
             // }
@@ -868,7 +902,8 @@ function getDriver(pnrno,sess_cust){
             var vehicle_no = json_drvrno[0].license_plate;
             var driver_photo =  json_drvrno[0].driver_photo;
             //var driver_mobile = json_drvmob[0].alt_phone_number;
-            var driver_mobile ='9624658122';
+            //var driver_mobile ='9624658122';
+            var driver_mobile = '1111111111'; // dummy //
               if(driver_mobile!='' && driver_mobile!=undefined){
                 var mob_driver = driver_mobile;
               }else{
@@ -877,7 +912,7 @@ function getDriver(pnrno,sess_cust){
               var split_drvpic=driver_photo.split("/");
               if(split_drvpic[1]==''){
                 // no photo found. //
-                var d_pictr='<div class="row center"><div class="col-100 tablet-33"><center><img src="img/cabs/male-circle-512.png" class="w-45"  width=50 ></center></div></div>';
+                var d_pictr='<div class="row center"><div class="col-100 tablet-33"><center><img src="img/cabs/male-circle-512.png" class="ml-100"  width=150 ></center></div></div>';
               }else{
                 // photo found. //
                 var d_pictr='';
@@ -886,7 +921,7 @@ function getDriver(pnrno,sess_cust){
               dt2 = new Date(pickdt);
               var approx_ETA=diff_minutes(dt1, dt2);
 
-              var driver_info = d_pictr+'<center><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30 text-bold">'+driver_name+'</div></div></li><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30">vid: '+vid+'</div></div></li><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30">mob: '+mob_driver+'</div></div></li><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30">vehicle: '+vehicle_no+'</div></div></li><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30">approx. eta: '+approx_ETA+' min</div></div></li><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30"><a href="#" class="col button color-signup text-white no-radius mt-p-5" onclick="call_driver('+"'"+mob_driver+"'"+')">CALL DRIVER</a></div></div></li></center></div>';
+              var driver_info = d_pictr+'<center><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30 text-bold">'+driver_name+'</div></div></li><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30">vid: '+vid+'</div></div></li><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30">mob: '+mob_driver+'</div></div></li><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30">vehicle: '+vehicle_no+'</div></div></li><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30">approx. eta: '+approx_ETA+' min</div></div></li><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30"><a href="#" class="col button color-signup text-white no-radius mt-p-5 new-wd" onclick="call_driver('+"'"+mob_driver+"'"+')">CALL DRIVER</a></div></div></li></center></div>';
               //var driver_info = d_pictr+'<center><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30 text-bold">'+driver_name+'</div></div></li><li class="item-content item-input"><div class="item-inner"><div class="item-input-wrap text-pink text-uppercase letterspace fs-14 lh-30">vid: '+vid+'</div></div></li></center>';
 
               $(".driverdetails").html(driver_info);
