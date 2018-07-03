@@ -34,7 +34,11 @@ var routes = [
     url: './internet.html',
     name: 'internet',
   },
-  
+  {
+    path:'/changepwd/',
+    url: 'changepwd.html',
+    name: 'changepwd',
+  },
  /*{
       path: '/bookride/',
       url: './bookride.html',

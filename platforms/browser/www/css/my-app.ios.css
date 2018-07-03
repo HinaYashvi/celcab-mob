@@ -354,7 +354,13 @@ i.icon{
  padding : 2% 6% 0 0!important;
      width: 75%!important;
 }
-
+.match-text,.unmatch-text{
+	text-align: left;
+    width: 50%;
+}
+input[readonly] {
+    background-color: #ece7e7;
+}
 /*.ios .list .item-content{
 	border-bottom: 1px dashed darkgrey!important;
 }*/

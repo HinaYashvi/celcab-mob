@@ -1,0 +1,104 @@
+<div class="page" data-name="changepwd" >
+  <div class="navbar titleclr no-hairline">
+    <div class="navbar-inner sliding">
+      <div class="left">
+        <a href="#" class="link back">
+          <i class="f7-icons color-white">arrow_left</i>
+          <!--span class="ios-only">Back</span-->
+        </a>
+      </div>
+      <div class="title letterspace">CHANGE PASSWORD</div>
+      <div class="right">
+        <a href="#" class="link popover-open" data-popover=".popover-links">
+          <i class="f7-icons color-white">more_vertical_fill</i>
+          <!--span class="ios-only">Back</span-->
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="page-content">   
+    <div class="block block-strong no-hairlines">
+      <form class="changePwdForm" id="changePwdForm">
+      <div class="row center">
+        <div class="col-100 tablet-11">
+            <!--a href="#" class="button mt-5" id="scan">Scan QR Code</a-->
+            <center><img src="img/logo.png" class="w-75"></center>
+        </div>
+        <div class="list form-div no-hairlines">
+          <input type="hidden" name="hidden_city" id="hidden_city" class="hidden_city">
+          <input type="hidden" name="hidden_cid" id="hidden_cid" class="hidden_cid">
+          <ul>       
+            <li class="item-content item-input">      
+              <div class="item-inner">
+                  <div class="item-title">MOBILE NUMBER</div>
+                  <div class="item-input-wrap">
+                    <input type="text" name="mobile_no" id="mobile_no" class="mobile_no" readonly>                        
+                  </div>
+              </div> 
+            </li>
+            <li class="item-content item-input">      
+              <div class="item-inner">
+                  <div class="item-title item-floating-label">OLD PASSWORD</div>
+                  <div class="item-input-wrap">
+                    <input type="password" name="old_pwd" id="old_pwd" placeholder="OLD PASSWORD" required validate>
+                    <span class="input-clear-button"></span>
+                  </div>
+              </div>
+            </li>
+            <li class="item-content item-input">      
+              <div class="item-inner">
+                  <div class="item-title item-floating-label">NEW PASSWORD</div>
+                  <div class="item-input-wrap">
+                    <input type="password" name="new_pwd" id="new_pwd" placeholder="NEW PASSWORD" required validate>
+                    <span class="input-clear-button"></span>
+                  </div>
+              </div>
+            </li>
+
+            <li class="item-content item-input">      
+              <div class="item-inner">
+                  <div class="item-title item-floating-label">RETYPE PASSWORD</div>
+                  <div class="item-input-wrap">
+                    <input type="password" name="retype_pwd" id="retype_pwd" placeholder="RETYPE PASSWORD" required validate>
+                    <span class="input-clear-button"></span>
+                  </div>
+              </div>
+            </li>
+            <span class="badge color-green match-text ml-5"></span>
+            <span class="badge color-red unmatch-text ml-5"></span>
+
+
+
+            <li class="item-content item-input">
+              <div class="item-inner">
+                  <div class="item-input-wrap">
+                      <a href="#" class="col button color-signup text-white no-radius mt-p-5" onclick="changePass()">CHANGE PASSWORD</a>  
+                  </div>
+              </div>
+            </li>        
+          </ul>
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+
+  <div class="popover popover-links">
+    <div class="popover-inner">
+      <div class="list">
+        <ul>
+          <li><a class="list-button item-link" href="#" onclick="gotoRideHistory()">Ride History</a></li>
+          <li><a class="list-button item-link" href="#" onclick="logOut()">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <div class="toolbar toolbar-bottom-md color-bluebtn toolbar-bluecolor">
+    <div class="toolbar-inner">
+      <a class="link"></a>
+      <a class="link text-white">DESIGNED FOR <img src="img/cabs/footer-icon.png" height="30" width="30" /><span class="text-bosch">CELCABS</span></a> 
+      <a class="link"></a> 
+    </div>
+  </div>
+</div>

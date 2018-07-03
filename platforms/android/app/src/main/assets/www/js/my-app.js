@@ -193,17 +193,18 @@ function checkConnection() {
     }
 }
 // ------------------------------- D A T A B A S E  C O N N E C T I O N ------------------------------- //
-function conn_db(city){
-  var city = city.trim();
+function conn_db(city){ 
+  //var city = city.trim();
   checkConnection();
-  //console.log(city);
+  //alert(city);
   var url='http://128.199.226.85/mobileapp_celcabs/appcontroller/db_conn';     
     $.ajax({
       'type':'POST',
       'url':url,
       'data':{'city':city},
       success:function(data){ 
-        window.localStorage.setItem("session_city", data);
+        var data=data.trim();
+        window.localStorage.setItem("session_city",data);
       }
     }); 
 }
@@ -255,7 +256,7 @@ function sendingPassOTP(){
     var mob_number = $("#mob_number").val();
     var hidden_ctype=$("#hidden_ctype").val();     
     var url='http://128.199.226.85/mobileapp_celcabs/appcontroller/getPassOTP';
-    $.ajax({
+    /*$.ajax({
         'type':'POST', 
         'url':url,
         'data':{'mob_number':mob_number,'city':sess_city},
@@ -266,7 +267,7 @@ function sendingPassOTP(){
            // app.router.navigate('/verifyotp/');
           }
         }
-    });
+    });*/
 
     if(hidden_ctype == 'newcust'){
       var signupForm = $(".signupForm").serialize();
@@ -279,17 +280,114 @@ function sendingPassOTP(){
           console.log(response);
           if(response){
             console.log(response);
-            window.localStorage.setItem("reg_custid", response);
+            window.localStorage.setItem("reg_custid",response.trim());
             app.router.navigate('/verifyotp/');
           }
         }
       });
-    }else{
+    }/*else{
             app.router.navigate('/verifyotp/');
-    } 
+    } */
+    else if(hidden_ctype == 'oldcust'){
+      var emailid = $("#emailid").val();
+      var sess_city = window.localStorage.getItem("session_city");
+      var mob_number = $("#mob_number").val();
+      var hidden_ctype=$("#hidden_ctype").val();     
+      var url='http://128.199.226.85/mobileapp_celcabs/appcontroller/getPassOTP';
+      $.ajax({
+        'type':'POST', 
+        'url':url,
+        'data':{'mob_number':mob_number,'city':sess_city,'emailid':emailid},
+        success:function(response){ 
+          console.log(response);
+          if(response){
+            //alert(response+"@@@@@");
+            //app.router.navigate('/verifyotp/');           
+            app.router.navigate('/verifyotp/');
+          }
+        }
+      });
+    }
   }
 }  
-
+function changePwd(){
+  //alert("changePwd");
+  app.router.navigate('/changepwd/');
+}
+$$(document).on('page:init', '.page[data-name="changepwd"]', function (e) {
+  checkConnection();
+  $(".popover.modal-in").css("display","none");
+  $(".popover-links").css("display",'none');
+  $(".popover-backdrop.backdrop-in").css("visibility","hidden");
+  $(".match-text").css("display",'none');
+  $(".unmatch-text").css("display",'none');
+  var sess_city=window.localStorage.getItem("session_city");
+  var sess_mobilenum = window.localStorage.getItem("session_mobilenum");  
+  var session_custid = window.localStorage.getItem("session_custid");
+  if(sess_mobilenum!=''){    
+    $(".mobile_no").val(sess_mobilenum); 
+  }
+  if(sess_city!=''){    
+    $(".hidden_city").val(sess_city); 
+  }
+  if(session_custid!=''){    
+    $(".hidden_cid").val(session_custid); 
+  }
+  $("#retype_pwd").keyup(validate);
+});
+function validate() {
+  var password1 = $("#new_pwd").val();
+  var password2 = $("#retype_pwd").val();
+  if(password1 == password2) {
+    $(".unmatch-text").css("display",'none');
+    $(".match-text").css("display",'block');
+    $(".match-text").text("Passwords match.");        
+  }
+  else{
+    $(".match-text").css("display",'none');
+    $(".unmatch-text").css("display",'block');
+    $(".unmatch-text").text("Passwords do not match!");  
+  }    
+}
+function changePass(){
+  var changePwdForm = $(".changePwdForm").serialize();
+  var sess_city=window.localStorage.getItem("session_city");
+  var url='http://128.199.226.85/mobileapp_celcabs/appcontroller/changePassWord';
+  $.ajax({
+        'type':'POST', 
+        'url':url,
+        'data':changePwdForm,
+        success:function(response){ 
+          //console.log(response);
+          var res=response.trim();
+          if(res){
+            //alert(res);
+            if(res == 'updated'){
+              /*var toastTop = app.toast.create({
+                text: 'Password changed successfully.',
+                position: 'bottom',
+                closeTimeout: 4000,
+              }); 
+              toastTop.open();*/
+              app.dialog.alert("Password changed successfully."); 
+            }else if(res == 'wrongoldpwd'){
+              /*var toastTop = app.toast.create({
+                text: 'Entered OldPassword is incorrect.',
+                position: 'bottom',
+                closeTimeout: 4000,
+              }); 
+              toastTop.open();*/
+              app.dialog.alert("Entered OldPassword is incorrect.");
+            }
+          }
+        }
+  }); 
+  $("#old_pwd").val('');
+  $("#new_pwd").val('');
+  $("#retype_pwd").val('');
+  $(".match-text").css("display",'none');
+  $(".unmatch-text").css("display",'none');
+}
 $$(document).on('page:init', '.page[data-name="verifyotp"]', function (e) {
   checkConnection();
   //alert("Do something here when page with data-name=verifyotp attribute loaded and initialized");
@@ -345,17 +443,22 @@ function verifyOTP(){
 
 $$(document).on('page:init', '.page[data-name="index"]', function (e) {
   checkConnection();
-  var sess_cust = window.localStorage.getItem("reg_custid");
+  if(window.localStorage.getItem("reg_custid")!=null){
+    var sess_cust = window.localStorage.getItem("reg_custid").trim();
+  
   //alert(sess_cust);
-  var sess_city = window.localStorage.getItem("session_city");
+  var sess_city = window.localStorage.getItem("session_city").trim();
   var checkreg_status = "http://128.199.226.85/mobileapp_celcabs/appcontroller/checkRegStatus";
   $.ajax({
       'type':'POST',  
       'url':checkreg_status,
       'data':{'city':sess_city,'sess_cust':sess_cust},
       success:function(reg_response){
-        //console.log(reg_response);
+
+        //console.log(reg_response.trim());
+        //alert(reg_response.trim());
         var Verified = reg_response.trim();
+        var OTPVerified=window.localStorage.setItem("OTPVerified", Verified);
         if(sess_cust!=null && Verified == 'Verified'){
           //alert("Create full-layout notification");
           var notificationFull = app.notification.create({
@@ -375,6 +478,7 @@ $$(document).on('page:init', '.page[data-name="index"]', function (e) {
         }
       }
   });
+}
   //alert(Verified+"****");
   
 });
@@ -395,30 +499,31 @@ function checklogin(){
 
         //ajax request here
         var mobile_number = $("#mobile_number").val();
-    var form = $(".loginForm").serialize();
-    //console.log(form);
-    //var base_url='http://128.199.226.85/celcabsapp/'; 
-    var url='http://128.199.226.85/mobileapp_celcabs/appcontroller/chklogin';  
-    $.ajax({
-      'type':'POST',
-      'url': url, 
-      'data':form,
-      success:function(data){
-        //console.log(data);
-        var json = $.parseJSON(data);
-        var json_res = json.loggedin_user[0];
-        //console.log("!!!!!!!!"+json_res);
-        if(json_res!=undefined){ 
-          window.localStorage.setItem("session_mobilenum", mobile_number);
-          //var json = $.parseJSON(data);  
-          window.localStorage.setItem("session_custname", json.loggedin_user[0].customer_name);
-          window.localStorage.setItem("session_custid", json.loggedin_user[0].id);
-          app.router.navigate('/bookride/');
-          window.localStorage.removeItem("reg_custid");  
-        }else{
-          app.dialog.alert("Authentication Failed");
+        var form = $(".loginForm").serialize();
+        //console.log(form);
+        //var base_url='http://128.199.226.85/celcabsapp/'; 
+        var url='http://128.199.226.85/mobileapp_celcabs/appcontroller/chklogin';  
+        $.ajax({
+          'type':'POST',
+          'url': url, 
+          'data':form, 
+          success:function(data){
+            //console.log(data);
+            var json = $.parseJSON(data);
+            var json_res = json.loggedin_user[0];
+            console.log("!!!!!!!!"+json_res);
+            if(json_res!=undefined){ 
+              window.localStorage.setItem("session_mobilenum",mobile_number);
+              //var json = $.parseJSON(data);  
+              window.localStorage.setItem("session_custname",json.loggedin_user[0].customer_name);
+              window.localStorage.setItem("session_custid",json.loggedin_user[0].id);
+              app.router.navigate('/bookride/');
+              window.localStorage.removeItem("reg_custid");
+              //window.localStorage.removeItem("OTPVerified"); 
+            }else{
+              app.dialog.alert("Authentication Failed");
+            }
         }
-      }
     }); 
        // return false;
 
@@ -980,5 +1085,6 @@ function logOut(){
   window.localStorage.removeItem("session_custid"); 
   window.localStorage.removeItem("session_custname"); 
   window.localStorage.removeItem("session_mobilenum");
+  window.localStorage.removeItem("OTPVerified");
   app.router.navigate('/index/');
 }
