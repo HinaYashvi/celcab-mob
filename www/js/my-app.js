@@ -428,7 +428,43 @@ function verifyOTP(){
         var res = response.trim();
         //alert(response.trim());
         if(res=='updated'){
-          app.router.navigate('/index/');
+          if(window.localStorage.getItem("reg_custid")!=null){
+            //var sess_cust = window.localStorage.getItem("reg_custid").trim();            
+            //alert(sess_cust);
+            //var sess_city = window.localStorage.getItem("session_city").trim();
+            var checkreg_status = "http://128.199.226.85/mobileapp_celcabs/appcontroller/checkRegStatus";
+            $.ajax({
+                'type':'POST',  
+                'url':checkreg_status,
+                'data':{'city':sess_city,'sess_cust':sess_cust},
+                success:function(reg_response){
+                  //console.log(reg_response.trim());
+                  //alert(reg_response.trim());
+                  var Verified = reg_response.trim();
+                  var OTPVerified=window.localStorage.setItem("OTPVerified", Verified);
+                  if(sess_cust!=null && Verified == 'Verified'){
+                    //alert("Create full-layout notification");
+                    /*var notificationFull = app.notification.create({
+                      //icon: '<i class="icon demo-icon">7</i>',
+                      title: 'CELCABS',
+                      titleRightText: 'now',
+                      subtitle: 'OTP Verified',
+                      text: 'OTP verification is done.Please Login using password sent with OTP.',
+                      closeTimeout: 5000,
+                    });
+                    //notificationFull.open();
+                    setTimeout(function() { 
+                      notificationFull.open();
+                    }, 2000);*/
+                    app.dialog.alert("OTP verification is done.Please Login using password sent with OTP.");
+                    app.router.navigate('/index/');
+                  }else{
+                    //alert("no notification");
+                  }
+                }
+            });
+          }
+          //app.router.navigate('/index/');
         }else if(res == 'wrongotp'){
           var toastTop = app.toast.create({
             text: 'OTP is wrong.Please check OTP again.',
@@ -443,7 +479,7 @@ function verifyOTP(){
 
 $$(document).on('page:init', '.page[data-name="index"]', function (e) {
   checkConnection();
-  if(window.localStorage.getItem("reg_custid")!=null){
+  /*if(window.localStorage.getItem("reg_custid")!=null){
     var sess_cust = window.localStorage.getItem("reg_custid").trim();
   
   //alert(sess_cust);
@@ -478,7 +514,7 @@ $$(document).on('page:init', '.page[data-name="index"]', function (e) {
         }
       }
   });
-}
+}*/
   //alert(Verified+"****");
   
 });
@@ -508,10 +544,10 @@ function checklogin(){
           'url': url, 
           'data':form, 
           success:function(data){
-            console.log(data);
+            //console.log(data);
             var json = $.parseJSON(data);
             var json_res = json.loggedin_user[0];
-            console.log("!!!!!!!!"+json_res);
+            //console.log("!!!!!!!!"+json_res);
             if(json_res!=undefined){ 
               window.localStorage.setItem("session_mobilenum",mobile_number);
               //var json = $.parseJSON(data);  
@@ -521,7 +557,10 @@ function checklogin(){
               window.localStorage.removeItem("reg_custid");
               //window.localStorage.removeItem("OTPVerified"); 
             }else{
-              app.dialog.alert("Authentication Failed");
+              app.dialog.alert("Authentication Failed!");
+              $(".city").val('');
+              $("#mobile_number").val('');
+              $("#password").val('');
             }
         }
     }); 
@@ -533,10 +572,8 @@ function checklogin(){
 
     
     //var url = decodeURIComponent(base_url.replace('/proxy/', ''));
-    //app.showIndicator();
-          
-     //app.hidePreloader(); 
-
+    //app.showIndicator();          
+    //app.hidePreloader(); 
 }
 $$(document).on('page:init', '.page[data-name="bookride"]', function (e) {
   checkConnection();
@@ -688,7 +725,7 @@ $$(document).on('page:init', '.page[data-name="bookride"]', function (e) {
       }
     }
 
-})
+}) 
   //app.preloader.hide();
   //hours();
  // minutes();
