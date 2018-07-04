@@ -495,7 +495,7 @@ function checklogin(){
        // alert('Check Validity!');
        // console.log('Check Validity!');
 
-      } else {
+      } else { 
 
         //ajax request here
         var mobile_number = $("#mobile_number").val();
@@ -508,7 +508,7 @@ function checklogin(){
           'url': url, 
           'data':form, 
           success:function(data){
-            //console.log(data);
+            console.log(data);
             var json = $.parseJSON(data);
             var json_res = json.loggedin_user[0];
             console.log("!!!!!!!!"+json_res);
