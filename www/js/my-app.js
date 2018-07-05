@@ -3,6 +3,7 @@ var $$ = Dom7;
 var app = new Framework7({  
   root: '#app', // App root element
   pushState: true,
+  //popupCloseByOutside:true,
   name: 'CELCAB',  // App Name
   //id: 'com.myapp.test',  // App id
   id: 'com.phonegap.celcabs',
@@ -312,13 +313,65 @@ function sendingPassOTP(){
 }  
 function changePwd(){
   //alert("changePwd");
+  $(".popover.modal-in").css("display","none");
+  $(".popover-links3").css("display",'none');
+  $(".popover-links1").css("display",'none!important');
+  $(".popover-links2").css("display",'none!important');
+  //$(".popover-backdrop .backdrop-in").css("visibility","hidden");
+  $(".popover-backdrop.backdrop-in").css("visibility","hidden");
   app.router.navigate('/changepwd/');
+  
+}
+function BookRide(){
+  //alert("changePwd");
+  $(".popover.modal-in").css("display","none");
+  $(".popover-links3").css("display",'none');
+  $(".popover-links1").css("display",'none!important');
+  $(".popover-links2").css("display",'none!important');
+  //$(".popover-backdrop .backdrop-in").css("visibility","hidden");
+  $(".popover-backdrop.backdrop-in").css("visibility","hidden");
+  app.router.navigate('/bookride/');
+  
 }
 $$(document).on('page:init', '.page[data-name="changepwd"]', function (e) {
   checkConnection();
-  $(".popover.modal-in").css("display","none");
+ /* $(".popover.modal-in").css("display","none");
   $(".popover-links").css("display",'none');
-  $(".popover-backdrop.backdrop-in").css("visibility","hidden");
+  $(".popover-links1").css("display",'none');
+  $(".popover-backdrop.backdrop-in").css("visibility","hidden");*/
+  /*var dynamicPopover = app.popover.create({
+    //alert("new");
+      targetEl: 'a.dynamic-popover',
+      content: '<div class="popover popover-links"><div class="popover-inner"><div class="list"><ul><li><a class="list-button item-link" href="#" onclick="gotoRideHistory()">Ride History</a></li><li><a class="list-button item-link" href="#" onclick="logOut()">Logout</a></li></ul></div></div></div>',
+      //var menu = app.popover.create({content: menus});
+  });*/
+  //$(".popover.modal-in").css("display","none");
+  $(".popover-links1").css("display",'none!important');
+  $(".popover-links2").css("display",'none!important');
+  $(".popover-links3").css("display",'none!important');
+  //$(".popover-backdrop.backdrop-in").css("visibility","hidden");
+  $$('.change-pwd').on('click', function () {
+    //alert("dynamic-popover clikcedd");
+    //$(".popover-backdrop .backdrop-in").css("visibility","visible");
+    //$(".popover.modal-in").css("display","block");   
+    $(".popover-links3").css("display",'block');
+    $(".popover-links1").css("display",'none');
+    $(".popover-links2").css("display",'none!important');
+    $(".popover.modal-in").css("display","block");   
+    $(".popover.modal-in").css("transition-duration","0.5s");
+    //dynamicPopover.open();
+    //$(".popover-backdrop").css("visibility","hidden");
+    //$(".popover-backdrop .backdrop-in").css("visibility","visible");
+  });
+  $$('.page-content').on('click', function () {
+   // alert("doc clieked");
+    //$(".popover-backdrop.backdrop-in").css("visibility","hidden");
+    //$(".popover-backdrop").css("visibility","hidden");
+    //dynamicPopover.close();
+    $(".popover-links3").css("display",'none');
+    $(".popover-links1").css("display",'none');
+    $(".popover-links2").css("display",'none');
+  }); 
   $(".match-text").css("display",'none');
   $(".unmatch-text").css("display",'none');
   var sess_city=window.localStorage.getItem("session_city");
@@ -479,6 +532,9 @@ function verifyOTP(){
 
 $$(document).on('page:init', '.page[data-name="index"]', function (e) {
   checkConnection();
+  $(".popover-links3").css("display",'none');
+  $(".popover-links1").css("display",'none');
+  $(".popover-links2").css("display",'none');  
   /*if(window.localStorage.getItem("reg_custid")!=null){
     var sess_cust = window.localStorage.getItem("reg_custid").trim();
   
@@ -574,14 +630,39 @@ function checklogin(){
     //var url = decodeURIComponent(base_url.replace('/proxy/', ''));
     //app.showIndicator();          
     //app.hidePreloader(); 
-}
+} 
+/*$$(document).click(function(){
+  //alert("clicked");
+  //$(".popover-backdrop").css("visibility","hidden");
+  $(".popover-backdrop .backdrop-in").css("visibility","hidden");
+  //$(".popover").css("display","none");
+});*/
 $$(document).on('page:init', '.page[data-name="bookride"]', function (e) {
   checkConnection();
+  $(".popover-links1").css("display",'none');
+  $(".popover-links2").css("display",'none');
+  $(".popover-links3").css("display",'none');
   $(".bookRide").hide();
   //app.showIndicator();
   //$(".preloader").css("display",'block');
-  //app.preloader.show();
+  //app.preloader.show();  
+  $$('.popover-open').on('click', function () {   
+    //$(".dialog-backdrop").addClass("backdrop-in");
+    $(".popover-links1").css("display",'block');
+    $(".popover-links3").css("display",'none');
+    $(".popover-links2").css("display",'none');
+    $(".popover.modal-in").css("visibility","visible"); 
+    $(".popover.modal-in").css("transition-duration","0.5s");  
+  });
+  $$('.bookRide').on('click', function () {   
+    
+    $(".popover-links1").css("display","none");
+    $(".popover-links2").css("display",'none');
+    $(".popover-links3").css("display",'none');
+    //$(".dialog-backdrop").removeClass("backdrop-in"); 
+  });
   $(".item-floating-label").css('display','block');
+  //$(".popover-backdrop").css("visibility","hidden");
   var sess_city = window.localStorage.getItem("session_city");
   var sess_mobilenum = window.localStorage.getItem("session_mobilenum");
   if(sess_city!=''){
@@ -656,7 +737,7 @@ $$(document).on('page:init', '.page[data-name="bookride"]', function (e) {
           }
           vclassdata +='<option value='+vhclassid+'>'+vehclass+'</option>';
           $('#vehclass').html(vclassdata);
-          //app.preloader.hide();
+          app.preloader.hide();
           app.dialog.close();
           $(".bookRide").fadeIn("slow");
         }        
@@ -847,9 +928,50 @@ function bookmyride(){
 }
 $$(document).on('page:init', '.page[data-name="ridehistory"]', function (e) {
   checkConnection();
+  //$(".popover.modal-in").css("display","none");
+  //$(".popover-links").css("display",'none');
+  //$(".popover-backdrop.backdrop-in").css("visibility","hidden");
+
+  /*var dynamicPopover = app.popover.create({
+    //alert("new");
+      targetEl: 'a.dynamic-popover-rdhs',
+      content: '<div class="popover popover-links2"><div class="popover-inner"><div class="list"><ul><li><a class="list-button item-link" href="/bookride/" >Book Ride</a></li><li><a class="list-button item-link" href="/changePwd/" >Change Password</a></li><li><a class="list-button item-link" href="#" onclick="logOut()">Logout</a></li></ul></div></div></div>',
+      //var menu = app.popover.create({content: menus});
+  });*/
+  //$(".popover.modal-in").css("display","none");
   $(".popover.modal-in").css("display","none");
-  $(".popover-links").css("display",'none');
+  $(".popover-links2").css("display",'none');
+  $(".popover-links1").css("display",'none');
+  $(".popover-links3").css("display",'none');
   $(".popover-backdrop.backdrop-in").css("visibility","hidden");
+  
+  
+  
+
+  //$(".popover-links1").css("display",'none');
+  //$(".popover-backdrop.backdrop-in").css("visibility","hidden");
+  $$('.ride-his').on('click', function () {
+    //alert("dynamic-popover clikcedd");
+    //$(".popover-backdrop .backdrop-in").css("visibility","visible");
+    //$(".popover.modal-in").css("display","block");   
+    $(".popover-links3").css("display",'none');
+    $(".popover-links1").css("display",'none');
+    $(".popover-links2").css("display",'block');
+    $(".popover.modal-in").css("transition-duration","0.5s");
+    //dynamicPopover.open();
+    //$(".popover-backdrop").css("visibility","hidden");
+    //$(".popover-backdrop .backdrop-in").css("visibility","visible");
+  });
+  $$('.page-content').on('click', function () {
+   // alert("doc clieked");
+    //$(".popover-backdrop.backdrop-in").css("visibility","hidden");
+    //$(".popover-backdrop").css("visibility","hidden");
+    //dynamicPopover.close();
+    $(".popover-links3").css("display",'none');
+    $(".popover-links1").css("display",'none');
+    $(".popover-links2").css("display",'none');
+  });
+
   var sess_city = window.localStorage.getItem("session_city");
   var sess_cust = window.localStorage.getItem("session_custid");
   var sess_mobilenum = window.localStorage.getItem("session_mobilenum");
@@ -978,11 +1100,11 @@ $$(document).on('page:init', '.page[data-name="ridehistory"]', function (e) {
     }); 
 
 });
-function showBackdrop(){
-  $(".popover.modal-in").css("display","block");
-  $(".popover-links").css("display",'block');
-  $(".popover-backdrop.backdrop-in").css("visibility","visible");
-}
+/*function showBackdrop(){
+  //$(".popover.modal-in").css("display","block");
+  //$(".popover-links").css("display",'block');
+  //$(".popover-backdrop.backdrop-in").css("visibility","visible");
+}*/
 function getPayment(pnrno,sess_cust){
   //alert(pnrno); 
   var sess_city = window.localStorage.getItem("session_city");
@@ -1038,9 +1160,9 @@ function getDriver(pnrno,sess_cust){
           success:function(drvno_response){ 
             var push_drv_array = $.parseJSON(drvno_response);
             var json_drvrno = push_drv_array.driver_det; 
-            var json_drvmob = push_drv_array.driver_mob;
+            var json_drvmob = push_drv_array.driver_mob;//alert("****"+json_drvmob);
             var driver_name=json_drvrno[0].driver_name;
-            var vid = json_drvrno[0].celcabs_vehicle_id;
+            var vid = json_drvrno[0].celcabs_vehicle_id;//alert(vid);
             var vehicle_no = json_drvrno[0].license_plate;
             var driver_photo =  json_drvrno[0].driver_photo;
             //var driver_mobile = json_drvmob[0].alt_phone_number;
@@ -1051,7 +1173,9 @@ function getDriver(pnrno,sess_cust){
               }else{
                 var mob_driver = '';
               }
+              if(driver_photo!=null && driver_photo!=undefined){
               var split_drvpic=driver_photo.split("/");
+              //alert("split_drvpic"+split_drvpic[0]+"****"+split_drvpic[1]);
               if(split_drvpic[1]==''){
                 // no photo found. //
                 var d_pictr='<div class="row center"><div class="col-100 tablet-33"><center><img src="img/cabs/male-circle-512.png" class="ml-100"  width=150 ></center></div></div>';
@@ -1059,6 +1183,10 @@ function getDriver(pnrno,sess_cust){
                 // photo found. //
                 var d_pictr='';
               }
+            }else{
+              var d_pictr='<div class="row center"><div class="col-100 tablet-33"><center><img src="img/cabs/male-circle-512.png" class="ml-100"  width=150 ></center></div></div>'; // dummy pic //
+              //var d_pictr='';
+            }
               dt1 = new Date(todaydate); 
               dt2 = new Date(pickdt);
               var approx_ETA=diff_minutes(dt1, dt2);
@@ -1094,7 +1222,7 @@ function diff_minutes(dt2, dt1){
   var tm=timeConvert(divdesec);
   return tm;
 }
-function timeConvert(n) {
+function timeConvert(n){
   var num = n;
   var hours = (num / 60);
   var rhours = Math.floor(hours);
@@ -1109,15 +1237,15 @@ function gotoRideHistory(){
     app.router.navigate('/ridehistory/');   
 }
 function showbackdrop(){ 
-  $(".popover.modal-in").css("display","block");
-  $(".popover-links").css("display","block");
-  $(".popover-backdrop.backdrop-in").css("visibility","visible");
+  //$(".popover.modal-in").css("display","block");
+  //$(".popover-links").css("display","block");
+  //$(".popover-backdrop.backdrop-in").css("visibility","visible");
 }
 // -------------------------------- L O G O U T ------------------------------ //
 function logOut(){
   checkConnection();
-  $(".popover.modal-in").css("display","none");
-  $(".popover-backdrop.backdrop-in").css("visibility","hidden");
+  //$(".popover.modal-in").css("display","none");
+  //$(".popover-backdrop.backdrop-in").css("visibility","hidden");
   window.localStorage.removeItem("session_city"); 
   window.localStorage.removeItem("session_custid"); 
   window.localStorage.removeItem("session_custname"); 

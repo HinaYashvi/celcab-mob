@@ -30,13 +30,19 @@
       </div>
       <div class="title letterspace">RIDE HISTORY</div>
       <div class="right">
-        <a href="#" class="link popover-open" data-popover=".popover-links">
+        <!--a href="#" class="link popover-open dynamic-popover" data-popover=".popover-links"-->
+        <a href="#" class="link popover-open ride-his" data-popover=".popover-links2">
           <i class="f7-icons color-white">more_vertical_fill</i>
           <!--span class="ios-only">Back</span-->
         </a>
       </div>
     </div>
   </div>
+
+
+  
+
+
   <div class="toolbar tabbar tabbar-labels"> 
     <div class="toolbar-inner">
       <a href="#tab-1" class="tab-link tab-link-active">
@@ -169,10 +175,21 @@
   </div>
 
 
-  <div class="popover popover-links">
+  <!--div class="popover popover-links">
     <div class="popover-inner">
       <div class="list">
         <ul>
+          <li><a class="list-button item-link" href="#" onclick="changePwd()">Change Password</a></li>
+          <li><a class="list-button item-link" href="#" onclick="logOut()">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </div-->
+  <div class="popover popover-links2">
+    <div class="popover-inner">
+      <div class="list">
+        <ul>
+          <li><a class="list-button item-link" href="#" onclick="BookRide()">Book Ride</a></li>
           <li><a class="list-button item-link" href="#" onclick="changePwd()">Change Password</a></li>
           <li><a class="list-button item-link" href="#" onclick="logOut()">Logout</a></li>
         </ul>
