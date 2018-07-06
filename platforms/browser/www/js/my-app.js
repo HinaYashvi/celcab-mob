@@ -319,6 +319,7 @@ function changePwd(){
   $(".popover-links2").css("display",'none!important');
   //$(".popover-backdrop .backdrop-in").css("visibility","hidden");
   $(".popover-backdrop.backdrop-in").css("visibility","hidden");
+  $("#success-badge").css("display","none");
   app.router.navigate('/changepwd/');
   
 }
@@ -334,7 +335,10 @@ function BookRide(){
   
 }
 $$(document).on('page:init', '.page[data-name="changepwd"]', function (e) {
+  //alert("change pwd page");
   checkConnection();
+  
+  //$("#warning-badge").css("display","none");
  /* $(".popover.modal-in").css("display","none");
   $(".popover-links").css("display",'none');
   $(".popover-links1").css("display",'none');
@@ -372,6 +376,7 @@ $$(document).on('page:init', '.page[data-name="changepwd"]', function (e) {
     $(".popover-links1").css("display",'none');
     $(".popover-links2").css("display",'none');
   }); 
+
   $(".match-text").css("display",'none');
   $(".unmatch-text").css("display",'none');
   var sess_city=window.localStorage.getItem("session_city");

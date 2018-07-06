@@ -296,6 +296,7 @@ body{
 input[readonly] {
     background-color: #ece7e7;
 }
+
 // ----------------------------- RESPONSIVE -------------------------- //
 @media only screen and (max-width: 645px) and (min-width: 635px){
 .btime{
@@ -303,14 +304,8 @@ input[readonly] {
 	top:63px!important;
 	right:14%!important;
 	left:80%!important;
-}	
-
 }
-
-
-
-
-
+}
 @media only screen and (max-width: 650px) and (min-width: 630px){
 .md .navbar .title {
     margin: 0 25%!important;
