@@ -1,6 +1,9 @@
 body{
 	font-family: Arial!important;
 }
+.mt-0{
+	margin-top: 0px!important;
+}
 .mt-5{
 	margin-top: 5px!important;
 }
@@ -43,11 +46,17 @@ body{
 .p-t-0{
 	padding-top: 0px!important;
 }
+.p-t-10{
+	padding-top: 10%!important;
+}
 .w-75{
 	width:75%;
 }
 .w-45{
 	width:45%;
+}
+.w-50{
+	width:50%;
 }
 .w-100{
 	width:100%;
@@ -116,6 +125,27 @@ body{
 	font-weight:bold;
 	font-size:18px;
 }
+.logo-bg{
+	background: #CF1B42;
+    height: 185px;
+}
+/*.panel-link{
+	letter-spacing: 2px;
+	padding: 10%;
+	/*color: #CF1B42!important;*/
+/*	color: #fff!important;
+}
+.panel .menu-content{
+	/*height: 71%!important;*/  
+	/*height: 100%!important;*/
+/*	position: absolute;
+	width: 100%;
+	background-color: #233671;
+}
+.menu-content p{
+	margin-top: 10%;
+}
+*/
 .text-bold{
 	font-weight:bold!important;
 }

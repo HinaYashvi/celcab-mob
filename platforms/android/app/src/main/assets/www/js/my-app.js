@@ -312,7 +312,7 @@ function sendingPassOTP(){
   }
 }  
 function changePwd(){
-  //alert("changePwd");
+  //alert("changePwd"); 
   $(".popover.modal-in").css("display","none");
   $(".popover-links3").css("display",'none');
   $(".popover-links1").css("display",'none!important');
@@ -639,6 +639,7 @@ function checklogin(){
 });*/
 $$(document).on('page:init', '.page[data-name="bookride"]', function (e) {
   checkConnection();
+
   $(".popover-links1").css("display",'none');
   $(".popover-links2").css("display",'none');
   $(".popover-links3").css("display",'none');
