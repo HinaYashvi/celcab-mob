@@ -1005,7 +1005,7 @@ function rideHistoryPage(){
       'url':upcoming_booking_url,
       'data':{'city':sess_city,'sess_cust':sess_cust,'sess_mobilenum':sess_mobilenum},
       success:function(response){ 
-        if(response){
+        if(response){  
          // console.log(response);
           var upcomingride_json_array = $.parseJSON(response);
           var json_upcmride = upcomingride_json_array.upcomingrides; 
