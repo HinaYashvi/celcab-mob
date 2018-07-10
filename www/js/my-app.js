@@ -475,6 +475,8 @@ function verifyOTP(){
   var sess_city = window.localStorage.getItem("session_city");
   var sess_cust = window.localStorage.getItem("reg_custid");
   var otp=$('#otp').val();
+
+  
   var city = sess_city.trim();
   var url='http://128.199.226.85/mobileapp_celcabs/appcontroller/verifiOTP';
   $.ajax({
@@ -934,6 +936,16 @@ function bookmyride(){
 }
 $$(document).on('page:init', '.page[data-name="ridehistory"]', function (e) {
   checkConnection();
+  var i=0;
+  if(i==0){
+    console.log("if");
+    rideHistoryPage();
+  }
+  i++; 
+  setInterval(function(){
+    console.log("timeinterval")
+    rideHistoryPage();
+  },5000); 
   //$(".popover.modal-in").css("display","none");
   //$(".popover-links").css("display",'none');
   //$(".popover-backdrop.backdrop-in").css("visibility","hidden");
@@ -945,6 +957,11 @@ $$(document).on('page:init', '.page[data-name="ridehistory"]', function (e) {
       //var menu = app.popover.create({content: menus});
   });*/
   //$(".popover.modal-in").css("display","none");
+   
+
+});
+
+function rideHistoryPage(){
   $(".popover.modal-in").css("display","none");
   $(".popover-links2").css("display",'none');
   $(".popover-links1").css("display",'none');
@@ -989,7 +1006,7 @@ $$(document).on('page:init', '.page[data-name="ridehistory"]', function (e) {
       'data':{'city':sess_city,'sess_cust':sess_cust,'sess_mobilenum':sess_mobilenum},
       success:function(response){ 
         if(response){
-          console.log(response);
+         // console.log(response);
           var upcomingride_json_array = $.parseJSON(response);
           var json_upcmride = upcomingride_json_array.upcomingrides; 
           var upcmridedata='';
@@ -1009,6 +1026,8 @@ $$(document).on('page:init', '.page[data-name="ridehistory"]', function (e) {
             var status_id=json_upcmride[i].sid;
             var call_status_id=json_upcmride[i].call_status_id;
             var terminated_id=json_upcmride[i].terminated_id;
+            var at_pickup_id=json_upcmride[i].at_pickup_id;
+            var pass_pkup=json_upcmride[i].pass_pkup;
             //alert(status_id);
             //if(status_id!= null && status_id == 7) {
             //if(status_id!= null && status_id == call_status_id) {
@@ -1017,18 +1036,41 @@ $$(document).on('page:init', '.page[data-name="ridehistory"]', function (e) {
              //alert(pnrno);
               var driver_detbtn="<button onclick='getDriver("+pnrno+","+sess_cust+")' class='col button button-small button-outline fs-8 text-drvdet-btn fs-8 border-drvdet-btn drvbtn ml-20 login-screen-open' data-login-screen='.login-screen'>DRIVER DETAILS</button>";
             }else{
+              //var driver_detbtn='<span class="text-capitalize fs-10 text-bold text-grey"><em>Driver not assigned.</em></span>';
               var driver_detbtn='';
             }
-            if(status_id==null && call_status_id == terminated_id){
+            if(status_id==null && call_status_id == terminated_id){ 
               var pnrno=json_upcmride[i].id;
               //alert(pnrno);
+              
               //onclick='getPayment("+pnrno+","+sess_cust+")'
               var payment_btn="<button onclick='getPayment("+pnrno+","+sess_cust+")' class='col button button-small button-outline fs-8 text-payment-btn fs-8 border-payment-btn pymntbtn ml-20 login-screen-open link popup-open' data-popup='.popup-payment'>PAYMENT DETAILS</button>";
               //var payment_btn="<button onclick='getPayment("+pnrno+","+sess_cust+")' class='col button button-small button-outline fs-8 text-drvdet-btn fs-8 border-drvdet-btn drvbtn ml-20 login-screen-open' data-login-screen='.login-screen'>PAYMENT DETAILS</button>";
             }else{
+
+              //var driver_detbtn='<span class="text-capitalize fs-10 text-bold text-grey"><em>Driver not assigned.</em></span>';
               var payment_btn='';
             }
+            if(terminated_id==null && status_id == null && at_pickup_id == call_status_id){
+              //console.log("At pickup=="+at_pickup_id);
+              var at_pickupbtn='<div class="doorstep"><span class="col button button-small button-outline fs-8 border-atpkup-btn atpkup ml-20 color-orange button-fill">Driver at doorstep</span></div>';
+              setInterval(function(){
+                $('.doorstep').fadeOut(600);
+                $('.doorstep').fadeIn(600);
+              },1000);
+            }else{
+              var at_pickupbtn='';
+            }
             
+            if(status_id==null && terminated_id==null && at_pickup_id==null && call_status_id == pass_pkup){
+              var pass_pickup='<div class="passpkup"><span class="col button button-small button-outline fs-8 border-atpkup-btn atpkup ml-20 color-green button-fill">On going ride</span></div>';
+              setInterval(function(){
+                $('.passpkup').fadeOut(600);
+                $('.passpkup').fadeIn(600);
+              },1000);             
+            }else{
+              var pass_pickup='';
+            }
             /*if(status_id!=null && status_id== 10){
 
             }*/
@@ -1053,7 +1095,7 @@ $$(document).on('page:init', '.page[data-name="ridehistory"]', function (e) {
             //alert(fromto_location+"pickup");
             //alert(fromto_city+"city");
             //upcmridedata+='<li><a href="#" class="item-link item-content"><div class="item-media"><img src="img/cabs/taxi3.png" height="60" width="50"></div><div class="item-inner"><div class="item-title"><div class="item-header text-left">Ride Dt:'+booking_dt+" "+booking_tm+'</div>| John Doe</div><div class="item-after">Edit</div></div></a></li>';
-            upcmridedata+='<li><a href="#" class="item-link item-content"><div class="item-media"><img src="img/cabs/taxi3.png" height="50" width="40" class="img img1"><button class="col button button-small button-outline text-pink fs-8 border-pink pinkbtn img2">SCHEDULED</button></div><div class="item-inner"><div class="item-title"><div class="item-header text-left"><i class="f7-icons color-black fs-12 mr-5 ml-3">calendar</i>'+rpt_dt+'</div><img src="img/cabs/from.png" height="20" width="23" class="mr-5 mt-5"><span class="fs-12">'+from_location+" ,"+from_city+'</span><br/><img src="img/cabs/mapmarker4.png" height="20" width="23" class="mr-5 mt-5"><span class="fs-12">'+to_location+" ,"+to_city+'</span><br/>'+driver_detbtn+" "+payment_btn+'</div><div class="item-after"><!--button class="col button button-small button-outline text-pink fs-8 border-pink pinkbtn">SCHEDULED</button--></div><div class="item-after fs-12"><i class="f7-icons color-black fs-12 mr-5 mt-5">time</i>'+rpt_tm+'</div></div></a></li>'; 
+            upcmridedata+='<li id="ongoing"><a href="#" class="item-link item-content"><div class="item-media"><img src="img/cabs/taxi3.png" height="50" width="40" class="img img1"><button class="col button button-small button-outline text-pink fs-8 border-pink pinkbtn img2">SCHEDULED</button></div><div class="item-inner"><div class="item-title"><div class="item-header text-left"><i class="f7-icons color-black fs-12 mr-5 ml-3">calendar</i>'+rpt_dt+'</div><img src="img/cabs/from.png" height="20" width="23" class="mr-5 mt-5"><span class="fs-12">'+from_location+" ,"+from_city+'</span><br/><img src="img/cabs/mapmarker4.png" height="20" width="23" class="mr-5 mt-5"><span class="fs-12">'+to_location+" ,"+to_city+'</span><br/>'+driver_detbtn+" "+payment_btn+" "+at_pickupbtn+" "+pass_pickup+'</div><div class="item-after"><!--button class="col button button-small button-outline text-pink fs-8 border-pink pinkbtn">SCHEDULED</button--></div><div class="item-after fs-12"><i class="f7-icons color-black fs-12 mr-5 mt-5">time</i>'+rpt_tm+'</div></div></a></li>'; 
              $("#upcomigrides").html(upcmridedata);
 
             // }
@@ -1103,9 +1145,8 @@ $$(document).on('page:init', '.page[data-name="ridehistory"]', function (e) {
           //app.router.navigate('/verifyotp/');
         }
       }
-    }); 
-
-});
+    });
+}
 /*function showBackdrop(){
   //$(".popover.modal-in").css("display","block");
   //$(".popover-links").css("display",'block');

@@ -22,7 +22,7 @@
       <div class="view view-main view-init ios-edges" data-url="/"> 
         <div class="page" data-name="index">    
 
-          <div class="page-content">
+          <div class="page-content loginbg">
           <!--div class="list links-list">
               <ul>
                 <li>
@@ -53,7 +53,7 @@
                   <li class="item-content item-input">  
                     <div class="item-inner">
                       <div class="item-input-wrap"> 
-                        <select placeholder="SELECT CITY" name="city" class="city" required validate onchange="conn_db(this.value)">
+                        <select placeholder="SELECT CITY" name="city" class="city login-inputs text-blue" required validate onchange="conn_db(this.value)">
                           <option value="">SELECT CITY</option>
                           <option value="Bengaluru">Bengaluru</option>
                           <option value="Hyderabad">Hyderabad</option>
@@ -70,7 +70,7 @@
                       <div class="item-inner">
                           <div class="item-title item-floating-label">MOBILE NUMBER</div>
                           <div class="item-input-wrap">
-                            <input type="number" placeholder="MOBILE NUMBER" name="mobile_number" id="mobile_number" required validate>
+                            <input type="number" placeholder="MOBILE NUMBER" name="mobile_number" id="mobile_number" required validate class="login-inputs text-blue">
                             <span class="input-clear-button"></span>    
                           </div>
                       </div>
@@ -79,7 +79,7 @@
                       <div class="item-inner">
                           <div class="item-title item-floating-label">PASSWORD</div>
                           <div class="item-input-wrap">
-                            <input type="password" placeholder="PASSWORD" name="password" id="password" required validate>
+                            <input type="password" placeholder="PASSWORD" name="password" id="password" required validate class="login-inputs text-blue">
                             <span class="input-clear-button"></span>
                           </div>
                       </div>
@@ -89,9 +89,7 @@
                           <div class="item-input-wrap ">
                               <a href="#" onclick="checklogin();" class="md-only col button color-bluebtn text-white no-radius mt-p-10 lgbtn" >LOG IN</a>
 
-                              <a href="#" onclick="checklogin();" class="ios-only col button color-bluebtn text-white no-radius mt-p-10 w-100 login-btn new-wd lgbtn" >LOG IN</a>
-
-                              
+                              <a href="#" onclick="checklogin();" class="ios-only col button color-bluebtn text-white no-radius mt-p-10 w-100 login-btn new-wd lgbtn" >LOG IN</a>       
                           </div>
                       </div>
                   </li> 

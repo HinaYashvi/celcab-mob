@@ -65,8 +65,12 @@ body{
 	padding: 2% 0 0 8%;
 	width:85%;
 }
-.md .item-input-wrap:after{
+/*.md .item-input-wrap:after{
 	background-color: rgba(0, 0, 0, 0.85)!important;	
+}*/
+.md .item-input-wrap:after{
+	/*background-color: #fff!important;*/
+	background-color: rgba(35, 54, 113, 0.5882352941176471)!important;
 }
 .color-bluebtn{
 	background-color: #233671;
@@ -79,6 +83,9 @@ body{
 }
 .text-pink{
 	color: #CF1B42!important;
+}
+.text-blue{
+	color:#233761!important;
 }
 .text-red{
 	color: red!important;
@@ -114,6 +121,20 @@ body{
     width: 70%;
     background-color: #93b9f7; 
 }
+.border-atpkup-btn{
+	
+    width: 80%;
+    /*color: #2f2f2f!important;
+    background-color: #868383;
+    boder: 1px dashed #525252!important;*/
+    font-weight: bold!important;
+}
+.md .button.border-atpkup-btn{
+	border-width: 1px!important;
+}
+.text-grey{
+	color:grey;
+}
 .text-white{
 	color:#fff!important;   
 }
@@ -146,6 +167,9 @@ body{
 	margin-top: 10%;
 }
 */
+.pl-5{
+	padding-left: 5%!important;
+}
 .text-bold{
 	font-weight:bold!important;
 }
@@ -183,9 +207,15 @@ body{
 	color: #000!important;
 }
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #9A9A9A!important;
+    /*color: #9A9A9A!important;    
     opacity: 1; /* Firefox */
+    color: #233761;
+    font-weight: bold;
 }
+
+/*.md .item-input-invalid .item-input-wrap:after, .md .input-invalid:after{
+	background: rgba(236, 228, 228, 0.45098039215686275)!important;
+}*/
 .letterspace{
 	letter-spacing: 2px!important;
 }
@@ -262,7 +292,7 @@ body{
 	right:7%!important;
 	left:60%!important;
 }
-.pinkbtn,.redbtn,.greenbtn,.drvbtn,.pymntbtn{
+.pinkbtn,.redbtn,.greenbtn,.drvbtn,.pymntbtn,.atpkup{
 	height: 18px!important;
     line-height: 18px!important;
 }
@@ -296,7 +326,21 @@ body{
 input[readonly] {
     background-color: #ece7e7;
 }
-
+.loginbg{
+	background: url("../img/cabs/login-bg.jpg") no-repeat center center fixed;
+    background-size: cover;   
+    background-position: right left bottom top;
+    /*background-position: center;*/
+    background-size: 100% 100vh;
+    position: relative;
+}
+.login-inputs{
+	/*background: rgba(236, 228, 228, 0.45098039215686275)!important;*/  /*trans white*/
+	background: #fff!important;
+	padding-left: 5%!important;
+	/*color:#fff;*/
+	border: 2px solid #233761!important;
+}
 // ----------------------------- RESPONSIVE -------------------------- //
 @media only screen and (max-width: 645px) and (min-width: 635px){
 .btime{
