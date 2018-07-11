@@ -88,7 +88,7 @@ function checkStorage(){
     e.preventDefault(); 
     navigator.notification.confirm("Do you want to Exit ?", onConfirmExit, "Exit Application");
   }, false );
-  if(sess_mobilenum==null) 
+  if(sess_mobilenum==null)  
   {
     //mainView.loadPage("index.html");
     //app.router.navigate('/index/');
