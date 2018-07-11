@@ -14,10 +14,10 @@
     <icon src="icon.png" />
     
     <platform name="android">
-        <preference name="SplashScreen" value="screen" /><!-- added by Nikita -->
-        <preference name="SplashScreenDelay" value="7000" /><!-- added by Nikita -->
-        <preference name="ShowSplashScreenSpinner" value="false" /><!-- added by Nikita -->
-        <splash src="splash.png" /><!-- added by Nikita --> 
+        <preference name="SplashScreen" value="screen" />
+        <preference name="SplashScreenDelay" value="7000" />
+        <preference name="ShowSplashScreenSpinner" value="false" />
+        <splash src="splash.png" /> 
     </platform>
     <platform name="ios">
         
@@ -55,7 +55,7 @@
     <plugin name="cordova-plugin-otp-auto-verification" spec="^1.0.1" />
     <plugin name="cordova-plugin-compat" spec="^1.2.0" />
     <plugin name="cordova-plugin-call-number" spec="^1.0.1" />
-    <preference name="phonegap-version" value="cli-6.5.0" />
-    <preference name="pgb-builder-version" value="2" />
+    <!--preference name="phonegap-version" value="cli-6.5.0" />
+    <preference name="pgb-builder-version" value="2" /-->
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" /> 
 </widget>
