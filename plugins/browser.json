@@ -45,6 +45,9 @@
     },
     "cordova-plugin-call-number": {
       "PACKAGE_NAME": "com.phonegap.celcabs"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.phonegap.celcabs"
     }
   },
   "dependent_plugins": {

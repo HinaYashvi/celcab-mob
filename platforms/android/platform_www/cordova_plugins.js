@@ -370,19 +370,19 @@ module.exports = [
     ]
   },
   {
-    "id": "onesignal-cordova-plugin.OneSignal",
-    "file": "plugins/onesignal-cordova-plugin/www/OneSignal.js",
-    "pluginId": "onesignal-cordova-plugin",
-    "clobbers": [
-      "OneSignal"
-    ]
-  },
-  {
     "id": "cordova-plugin-call-number.CallNumber",
     "file": "plugins/cordova-plugin-call-number/www/CallNumber.js",
     "pluginId": "cordova-plugin-call-number",
     "clobbers": [
       "call"
+    ]
+  },
+  {
+    "id": "cordova-plugin-splashscreen.SplashScreen",
+    "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+    "pluginId": "cordova-plugin-splashscreen",
+    "clobbers": [
+      "navigator.splashscreen"
     ]
   }
 ];
@@ -402,8 +402,8 @@ module.exports.metadata =
   "cordova-plugin-otp-auto-verification": "1.0.1",
   "cordova-plugin-vibration": "3.1.0",
   "cordova-plugin-whitelist": "1.3.3",
-  "onesignal-cordova-plugin": "2.4.1",
-  "cordova-plugin-call-number": "1.0.1"
+  "cordova-plugin-call-number": "1.0.1",
+  "cordova-plugin-splashscreen": "5.0.2"
 };
 // BOTTOM OF METADATA
 });
