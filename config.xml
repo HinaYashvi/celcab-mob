@@ -72,4 +72,7 @@
     <plugin name="cordova-plugin-otp-auto-verification" spec="^1.0.1" />
     <plugin name="cordova-plugin-compat" spec="^1.2.0" />
     <plugin name="cordova-plugin-call-number" spec="^1.0.1" />
+
+    <preference name='phonegap-version' value='cli-6.5.0' />
+	<preference name='pgb-builder-version' value='2' />
 </widget>
