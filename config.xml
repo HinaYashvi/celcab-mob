@@ -12,6 +12,7 @@
     <preference name="android-minSdkVersion" value="16" />
     <preference name="orientation" value="portrait" />
     <icon src="icon.png" />
+    <splash src="splash.png" />
     <platform name="android">
         <splash density="land-ldpi" src="www/res/screen/android/drawable-land-ldpi-screen.png" />
         <splash density="land-mdpi" src="www/res/screen/android/drawable-land-mdpi-screen.png" />
