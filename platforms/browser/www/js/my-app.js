@@ -44,6 +44,7 @@ var app = new Framework7({
   dynamicNavbar: true,
   pushState: true,
 });*/
+var base_url = 'http://128.199.226.85/mobileapp_celcabs/';
 
 $( document ).ready(function() {  
     document.addEventListener("deviceready", checkStorage, false); 
@@ -198,7 +199,7 @@ function conn_db(city){
   //var city = city.trim();
   checkConnection();
   //alert(city);
-  var url='http://128.199.226.85/mobileapp_celcabs/appcontroller/db_conn';     
+  var url=base_url+'appcontroller/db_conn';     
     $.ajax({
       'type':'POST',
       'url':url,
@@ -216,7 +217,7 @@ function getCustInfo(mob_number){
   var city=$(".selcity").val();
   if(mob_number.length >= 10){ 
     //console.log("phonenumber"+mob_number);
-    var url='http://128.199.226.85/mobileapp_celcabs/appcontroller/getCustRegInfo';
+    var url=base_url+'appcontroller/getCustRegInfo';
     $.ajax({
       'type':'POST', 
       'url':url,
@@ -240,7 +241,7 @@ function getCustInfo(mob_number){
             $("#gender").val('');
             $("#hidden_ctype").val("newcust");
             //var signupForm = $(".signupForm").serialize();
-            //var url='http://128.199.226.85/mobileapp_celcabs/appcontroller/registerCustomer';
+            //var url=base_url+'appcontroller/registerCustomer';
           }
       }
     });
@@ -256,7 +257,7 @@ function sendingPassOTP(){
     var sess_city = window.localStorage.getItem("session_city");
     var mob_number = $("#mob_number").val();
     var hidden_ctype=$("#hidden_ctype").val();     
-    var url='http://128.199.226.85/mobileapp_celcabs/appcontroller/getPassOTP';
+    var url=base_url+'appcontroller/getPassOTP';
     /*$.ajax({
         'type':'POST', 
         'url':url,
@@ -272,7 +273,7 @@ function sendingPassOTP(){
 
     if(hidden_ctype == 'newcust'){
       var signupForm = $(".signupForm").serialize();
-      var url='http://128.199.226.85/mobileapp_celcabs/appcontroller/registerCustomer'; 
+      var url=base_url+'appcontroller/registerCustomer'; 
       $.ajax({
         'type':'POST', 
         'url':url,
@@ -294,7 +295,7 @@ function sendingPassOTP(){
       var sess_city = window.localStorage.getItem("session_city");
       var mob_number = $("#mob_number").val();
       var hidden_ctype=$("#hidden_ctype").val();     
-      var url='http://128.199.226.85/mobileapp_celcabs/appcontroller/getPassOTP';
+      var url=base_url+'appcontroller/getPassOTP';
       $.ajax({
         'type':'POST', 
         'url':url,
@@ -410,7 +411,7 @@ function validate() {
 function changePass(){
   var changePwdForm = $(".changePwdForm").serialize();
   var sess_city=window.localStorage.getItem("session_city");
-  var url='http://128.199.226.85/mobileapp_celcabs/appcontroller/changePassWord';
+  var url=base_url+'appcontroller/changePassWord';
   $.ajax({
         'type':'POST', 
         'url':url,
@@ -478,7 +479,7 @@ function verifyOTP(){
 
   
   var city = sess_city.trim();
-  var url='http://128.199.226.85/mobileapp_celcabs/appcontroller/verifiOTP';
+  var url=base_url+'appcontroller/verifiOTP';
   $.ajax({
       'type':'POST',  
       'url':url,
@@ -492,7 +493,7 @@ function verifyOTP(){
             //var sess_cust = window.localStorage.getItem("reg_custid").trim();            
             //alert(sess_cust);
             //var sess_city = window.localStorage.getItem("session_city").trim();
-            var checkreg_status = "http://128.199.226.85/mobileapp_celcabs/appcontroller/checkRegStatus";
+            var checkreg_status = base_url+"appcontroller/checkRegStatus";
             $.ajax({
                 'type':'POST',  
                 'url':checkreg_status,
@@ -601,12 +602,13 @@ function checklogin(){
         var form = $(".loginForm").serialize();
         //console.log(form);
         //var base_url='http://128.199.226.85/celcabsapp/'; 
-        var url='http://128.199.226.85/mobileapp_celcabs/appcontroller/chklogin';  
+        var url=base_url+'appcontroller/chklogin';  
         $.ajax({
           'type':'POST',
           'url': url, 
           'data':form, 
           success:function(data){
+            //alert(data); 
             //console.log(data);
             var json = $.parseJSON(data);
             var json_res = json.loggedin_user[0];
@@ -622,7 +624,7 @@ function checklogin(){
             }else{
               app.dialog.alert("Authentication Failed!");
               $(".city").val('');
-              $("#mobile_number").val('');
+              $("#mobile_number").val(''); 
               $("#password").val('');
             }
         }
@@ -695,7 +697,7 @@ $$(document).on('page:init', '.page[data-name="bookride"]', function (e) {
     $('#minutes').html(minsdata);
   }
   $("#veh_count").val(1);
-  var url='http://128.199.226.85/mobileapp_celcabs/appcontroller/getAll_Location';
+  var url=base_url+'appcontroller/getAll_Location';
   $.ajax({
       'type':'POST', 
       'url':url,
@@ -723,7 +725,7 @@ $$(document).on('page:init', '.page[data-name="bookride"]', function (e) {
         }
       }
   });  
-  var url_vtype = 'http://128.199.226.85/mobileapp_celcabs/appcontroller/getAll_vehclass';
+  var url_vtype = base_url+'appcontroller/getAll_vehclass';
   $.ajax({
       'type':'POST', 
       'url':url_vtype,
@@ -907,7 +909,7 @@ function bookmyride(){
     //console.log(postdata);
     //var stringify=JSON.stringify(postdata);
     //console.log(stringify);
-    var url = 'http://128.199.226.85/mobileapp_celcabs/appcontroller/bookMyRide';
+    var url = base_url+'appcontroller/bookMyRide';
     $.ajax({
           'type':'POST', 
           'url':url,
@@ -998,8 +1000,8 @@ function rideHistoryPage(){
   var sess_city = window.localStorage.getItem("session_city");
   var sess_cust = window.localStorage.getItem("session_custid");
   var sess_mobilenum = window.localStorage.getItem("session_mobilenum");
-  var upcoming_booking_url="http://128.199.226.85/mobileapp_celcabs/appcontroller/upcoming_rides";
-  var droped_cust_url="http://128.199.226.85/mobileapp_celcabs/appcontroller/dropedcusturl";
+  var upcoming_booking_url=base_url+"appcontroller/upcoming_rides";
+  var droped_cust_url=base_url+"appcontroller/dropedcusturl";
   $.ajax({
       'type':'POST', 
       'url':upcoming_booking_url,
@@ -1109,7 +1111,7 @@ function rideHistoryPage(){
 
     
 
-    var past_booking_url="http://128.199.226.85/mobileapp_celcabs/appcontroller/past_rides";
+    var past_booking_url=base_url+"appcontroller/past_rides";
     $.ajax({
       'type':'POST', 
       'url':past_booking_url,
@@ -1158,7 +1160,7 @@ function getPayment(pnrno,sess_cust){
   var sess_cust = window.localStorage.getItem("session_custid");
   var sess_mobilenum = window.localStorage.getItem("session_mobilenum");
   //alert(sess_city+sess_cust+sess_mobilenum);
-  var payment_url="http://128.199.226.85/mobileapp_celcabs/appcontroller/paymentDet";
+  var payment_url=base_url+"appcontroller/paymentDet";
   $.ajax({ 
     'type':'POST', 
     'url':payment_url,
@@ -1185,8 +1187,8 @@ function getPayment(pnrno,sess_cust){
 }
 function getDriver(pnrno,sess_cust){
   var sess_city = window.localStorage.getItem("session_city");
-  var pushnotification_url = "http://128.199.226.85/mobileapp_celcabs/appcontroller/send_enroute_push";
-  var driverdetail_url = "http://128.199.226.85/mobileapp_celcabs/appcontroller/getDriverdetail";
+  var pushnotification_url = base_url+"appcontroller/send_enroute_push";
+  var driverdetail_url = base_url+"appcontroller/getDriverdetail";
   $.ajax({ 
     'type':'POST', 
     'url':pushnotification_url,
@@ -1212,9 +1214,9 @@ function getDriver(pnrno,sess_cust){
             var vid = json_drvrno[0].celcabs_vehicle_id;//alert(vid);
             var vehicle_no = json_drvrno[0].license_plate;
             var driver_photo =  json_drvrno[0].driver_photo;
-            //var driver_mobile = json_drvmob[0].alt_phone_number;
+            var driver_mobile = json_drvmob[0].alt_phone_number;
             //var driver_mobile ='9624658122';
-            var driver_mobile = '1111111111'; // dummy //
+            //var driver_mobile = '1111111111'; // dummy //
               if(driver_mobile!='' && driver_mobile!=undefined){
                 var mob_driver = driver_mobile;
               }else{

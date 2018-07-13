@@ -48,7 +48,7 @@
     </feature>
     <name>Celcabs</name>
     <description>
-        CELCABS - TEST MOBILE APPLICATION.
+        CELCABS - CUSTOMER MOBILE APPLICATION.
     </description>
     <author email="support@phonegap.com" href="http://phonegap.com">
         Celcabs Team
@@ -62,14 +62,11 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <splash src="splash.png" />
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="16" />
     <preference name="orientation" value="portrait" />
-    <preference name="phonegap-version" value="cli-6.5.0" />
-    <preference name="pgb-builder-version" value="2" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="7000" />
     <preference name="ShowSplashScreenSpinner" value="false" />

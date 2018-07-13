@@ -12,18 +12,17 @@
     <preference name="android-minSdkVersion" value="16" />
     <preference name="orientation" value="portrait" />
     <icon src="icon.png" />
-    
     <platform name="android">
         <preference name="SplashScreen" value="screen" />
         <preference name="SplashScreenDelay" value="7000" />
         <preference name="ShowSplashScreenSpinner" value="false" />
-        <splash src="splash.png" /> 
     </platform>
     <platform name="ios">
-        
+        <preference name="SplashScreen" value="screen" />
+        <preference name="SplashScreenDelay" value="7000" />
+        <preference name="ShowSplashScreenSpinner" value="false" />
     </platform>
     <platform name="wp8">
-        
     </platform>
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -55,7 +54,5 @@
     <plugin name="cordova-plugin-otp-auto-verification" spec="^1.0.1" />
     <plugin name="cordova-plugin-compat" spec="^1.2.0" />
     <plugin name="cordova-plugin-call-number" spec="^1.0.1" />
-    <!--preference name="phonegap-version" value="cli-6.5.0" />
-    <preference name="pgb-builder-version" value="2" /-->
-    <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" /> 
+    <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
 </widget>
