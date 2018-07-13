@@ -44,7 +44,10 @@ var app = new Framework7({
   dynamicNavbar: true,
   pushState: true,
 });*/
-var base_url = 'http://128.199.226.85/mobileapp_celcabs/';
+var port = 9013;
+//var base_url = 'http://128.199.226.85:'+port+'/mobileapp_celcabs/';   // TEST SERVER //
+var base_url = 'http://128.199.226.85:'+port+'/mobileapp_celcabs/';   // LIVE SERVER //
+
 
 $( document ).ready(function() {  
     document.addEventListener("deviceready", checkStorage, false); 
