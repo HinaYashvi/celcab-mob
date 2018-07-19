@@ -49,6 +49,7 @@ var port = 9013;
 var base_url = 'http://182.18.160.210/mobileapp_celcabs/';   // LIVE SERVER //
 
 
+
 $( document ).ready(function() {  
     document.addEventListener("deviceready", checkStorage, false); 
     //document.addEventListener("backbutton", onBackKeyDown, false);
@@ -321,6 +322,7 @@ function changePwd(){
   $(".popover-links3").css("display",'none');
   $(".popover-links1").css("display",'none!important');
   $(".popover-links2").css("display",'none!important');
+  $(".popover-links4").css("display",'none!important');
   //$(".popover-backdrop .backdrop-in").css("visibility","hidden");
   $(".popover-backdrop.backdrop-in").css("visibility","hidden");
   $("#success-badge").css("display","none");
@@ -333,6 +335,7 @@ function BookRide(){
   $(".popover-links3").css("display",'none');
   $(".popover-links1").css("display",'none!important');
   $(".popover-links2").css("display",'none!important');
+  $(".popover-links4").css("display",'none!important');
   //$(".popover-backdrop .backdrop-in").css("visibility","hidden");
   $(".popover-backdrop.backdrop-in").css("visibility","hidden");
   app.router.navigate('/bookride/');
@@ -357,6 +360,7 @@ $$(document).on('page:init', '.page[data-name="changepwd"]', function (e) {
   $(".popover-links1").css("display",'none!important');
   $(".popover-links2").css("display",'none!important');
   $(".popover-links3").css("display",'none!important');
+  $(".popover-links4").css("display",'none!important');
   //$(".popover-backdrop.backdrop-in").css("visibility","hidden");
   $$('.change-pwd').on('click', function () {
     //alert("dynamic-popover clikcedd");
@@ -365,6 +369,7 @@ $$(document).on('page:init', '.page[data-name="changepwd"]', function (e) {
     $(".popover-links3").css("display",'block');
     $(".popover-links1").css("display",'none');
     $(".popover-links2").css("display",'none!important');
+    $(".popover-links4").css("display",'none!important');
     $(".popover.modal-in").css("display","block");   
     $(".popover.modal-in").css("transition-duration","0.5s");
     //dynamicPopover.open();
@@ -379,6 +384,7 @@ $$(document).on('page:init', '.page[data-name="changepwd"]', function (e) {
     $(".popover-links3").css("display",'none');
     $(".popover-links1").css("display",'none');
     $(".popover-links2").css("display",'none');
+    $(".popover-links4").css("display",'none');
   }); 
 
   $(".match-text").css("display",'none');
@@ -655,6 +661,7 @@ $$(document).on('page:init', '.page[data-name="bookride"]', function (e) {
   $(".popover-links1").css("display",'none');
   $(".popover-links2").css("display",'none');
   $(".popover-links3").css("display",'none');
+  $(".popover-links4").css("display",'none');
   $(".bookRide").hide();
   //app.showIndicator();
   //$(".preloader").css("display",'block');
@@ -664,6 +671,7 @@ $$(document).on('page:init', '.page[data-name="bookride"]', function (e) {
     $(".popover-links1").css("display",'block');
     $(".popover-links3").css("display",'none');
     $(".popover-links2").css("display",'none');
+    $(".popover-links4").css("display",'none');
     $(".popover.modal-in").css("visibility","visible"); 
     $(".popover.modal-in").css("transition-duration","0.5s");  
   });
@@ -672,6 +680,7 @@ $$(document).on('page:init', '.page[data-name="bookride"]', function (e) {
     $(".popover-links1").css("display","none");
     $(".popover-links2").css("display",'none');
     $(".popover-links3").css("display",'none');
+    $(".popover-links4").css("display",'none');
     //$(".dialog-backdrop").removeClass("backdrop-in"); 
   });
   $(".item-floating-label").css('display','block');
@@ -943,12 +952,12 @@ $$(document).on('page:init', '.page[data-name="ridehistory"]', function (e) {
   checkConnection();
   var i=0;
   if(i==0){
-    console.log("if");
+    //console.log("if");
     rideHistoryPage();
   }
   i++; 
   setInterval(function(){
-    console.log("timeinterval")
+    //console.log("timeinterval")
     rideHistoryPage();
   },5000); 
   //$(".popover.modal-in").css("display","none");
@@ -971,6 +980,7 @@ function rideHistoryPage(){
   $(".popover-links2").css("display",'none');
   $(".popover-links1").css("display",'none');
   $(".popover-links3").css("display",'none');
+  $(".popover-links4").css("display",'none');
   $(".popover-backdrop.backdrop-in").css("visibility","hidden");
   
   
@@ -985,6 +995,7 @@ function rideHistoryPage(){
     $(".popover-links3").css("display",'none');
     $(".popover-links1").css("display",'none');
     $(".popover-links2").css("display",'block');
+    $(".popover-links4").css("display",'none');
     $(".popover.modal-in").css("transition-duration","0.5s");
     //dynamicPopover.open();
     //$(".popover-backdrop").css("visibility","hidden");
@@ -998,6 +1009,7 @@ function rideHistoryPage(){
     $(".popover-links3").css("display",'none');
     $(".popover-links1").css("display",'none');
     $(".popover-links2").css("display",'none');
+    $(".popover-links4").css("display",'none');
   });
 
   var sess_city = window.localStorage.getItem("session_city");
@@ -1172,6 +1184,9 @@ function getPayment(pnrno,sess_cust){
       //alert("^^^^"+pay_response);
       //console.log(pay_response+"======");
       var pymnt_array = $.parseJSON(pay_response);
+
+     // alert(pay_response);
+      console.log(pay_response)
       var json_payment = pymnt_array.paymentdet;
       var from_location=json_payment[0].pickup_area;
       var from_city=json_payment[0].pickup_city;
@@ -1292,6 +1307,113 @@ function showbackdrop(){
   //$(".popover.modal-in").css("display","block");
   //$(".popover-links").css("display","block");
   //$(".popover-backdrop.backdrop-in").css("visibility","visible");
+}
+
+function myProfile(){
+  checkConnection();
+  $(".popover.modal-in").css("display","none");
+  $(".popover-links3").css("display",'none');
+  $(".popover-links1").css("display",'none!important');
+  $(".popover-links2").css("display",'none!important');
+  $(".popover-links4").css("display",'none!important');
+  //$(".popover-backdrop .backdrop-in").css("visibility","hidden");
+  $(".popover-backdrop.backdrop-in").css("visibility","hidden");
+  app.router.navigate('/profile/'); 
+}
+$$(document).on('page:init', '.page[data-name="profile"]', function (e) {  
+  checkConnection();  
+
+  $(".popover-links1").css("display",'none!important');
+  $(".popover-links2").css("display",'none!important');
+  $(".popover-links3").css("display",'none!important');
+  $(".popover-links4").css("display",'none!important');
+  //$(".popover-backdrop.backdrop-in").css("visibility","hidden");
+  $$('.change-pwd').on('click', function () {
+    //alert("dynamic-popover clikcedd");
+    //$(".popover-backdrop .backdrop-in").css("visibility","visible");
+    //$(".popover.modal-in").css("display","block");   
+    $(".popover-links4").css("display",'block');
+    $(".popover-links1").css("display",'none');
+    $(".popover-links2").css("display",'none!important');
+    $(".popover-links3").css("display",'none!important');
+    $(".popover.modal-in").css("display","block");   
+    $(".popover.modal-in").css("transition-duration","0.5s");
+    //dynamicPopover.open();
+    //$(".popover-backdrop").css("visibility","hidden");
+    //$(".popover-backdrop .backdrop-in").css("visibility","visible");
+  });
+  $$('.page-content').on('click', function () {
+   // alert("doc clieked");
+    //$(".popover-backdrop.backdrop-in").css("visibility","hidden");
+    //$(".popover-backdrop").css("visibility","hidden");
+    //dynamicPopover.close();
+    $(".popover-links3").css("display",'none');
+    $(".popover-links1").css("display",'none');
+    $(".popover-links2").css("display",'none');
+    $(".popover-links4").css("display",'none');
+  });
+
+  var sess_city = window.localStorage.getItem("session_city");
+  var session_custid = window.localStorage.getItem("session_custid"); 
+  var session_mobilenum = window.localStorage.getItem("session_mobilenum");
+    //console.log("phonenumber"+mob_number);
+    var url=base_url+'appcontroller/getCustinfo';
+    $.ajax({
+      'type':'POST', 
+      'url':url,
+      'data':{'session_custid':session_custid,'city':sess_city},
+      success:function(response){ 
+        var json = $.parseJSON(response); 
+        var json_arr = json.getCustinfo[0];
+        console.log(json_arr);
+        //if(response!=''){
+          if(json_arr!=undefined){  
+            
+            $(".item-floating-label").css('display','none');  
+            $("#mob_number").val(session_mobilenum);    
+            $("#cust_name").val(json.getCustinfo[0].customer_name);
+            if(json.getCustinfo[0].email!=null || json.getCustinfo[0].email!=undefined){
+             $("#emailid").val(json.getCustinfo[0].email);
+            }else{
+              $("#emailid").val('');
+            }
+            $("#gender").val(json.getCustinfo[0].gender);      
+            $("#hidden_cid").val(json.getCustinfo[0].id);      
+          }else{
+            //console.log("new registration here");
+            $(".item-floating-label").css('display','block');  
+            $("#mob_number").val('');    
+            $("#cust_name").val('');
+            $("#emailid").val('');
+            $("#gender").val('');           
+          }
+      }
+    });
+});
+function updateProfile(){
+  var sess_city = window.localStorage.getItem("session_city");
+  var hidden_cid = $("#hidden_cid").val();
+  var cust_name = $("#cust_name").val();
+  var gender = $("#gender").val();
+  var emailid = $("#emailid").val();
+
+  //alert(hidden_cid);
+  var updt_url=base_url+'appcontroller/updateCustinfo';
+  $.ajax({
+    'type':'POST', 
+    'url':updt_url,
+    'data':{'hidden_cid':hidden_cid,'city':sess_city,'cust_name':cust_name,'gender':gender,'emailid':emailid},
+    success:function(response){ 
+      //console.log(response);
+      //alert(response.trim());
+      var trimed =response.trim();
+      //alert(trimed);
+      if(trimed=='updated'){
+        app.dialog.alert("Profile Updated successfully!");
+      }
+    }
+  });
+  app.router.navigate('/ridehistory/');
 }
 // -------------------------------- L O G O U T ------------------------------ //
 function logOut(){

@@ -1,4 +1,4 @@
-<div class="page" data-name="signup">
+<div class="page" data-name="profile">
   <div class="navbar titleclr no-hairline">
     <div class="navbar-inner sliding">
       <div class="left">
@@ -7,48 +7,50 @@
           <!--span class="ios-only">Back</span-->
         </a>
       </div>
-      <div class="title letterspace">NEW REGISTRATION</div> 
+      <div class="title letterspace">MY PROFILE</div>
+      <div class="right">
+        <a href="#" class="link popover-open profilepg" data-popover=".popover-links4" onclick="showbackdrop()">
+          <i class="f7-icons color-white">more_vertical_fill</i>
+          <!--span class="ios-only">Back</span--> 
+        </a>
+      </div>
+       
     </div>
   </div>
+
+  <div class="popover popover-links4">
+    <div class="popover-inner">
+      <div class="list">
+        <ul>           
+          <li><a class="list-button item-link" href="#" onclick="changePwd()">Change Password</a></li>
+          <li><a class="list-button item-link" href="#" onclick="BookRide()">Book Ride</a></li>
+          <li><a class="list-button item-link" href="#" onclick="gotoRideHistory()">Ride History</a></li>
+          <li><a class="list-button item-link" href="#" onclick="logOut()">Logout</a></li>
+        </ul>
+      </div>
+    </div> 
+  </div>
+
   <div class="page-content">   
     <div class="block block-strong no-hairlines">
-      <form class="signupForm" id="signupForm">
+      <form class="profileForm" id="profileForm">
       <div class="row center">
         <div class="col-100 tablet-11">
             <center><img src="img/logo.png" class="mt-p-5 w-75"></center>
-        </div>
-        <input type="hidden" name="hidden_ctype" id="hidden_ctype" />
+        </div>        
         <div class="list form-div no-hairlines">
-          <ul>
-            <li class="item-content item-input">
-              <div class="item-inner">
-                <div class="item-input-wrap">
-                  <select placeholder="SELECT CITY" name="city" class="selcity" required validate onchange="conn_db(this.value)">
-                          <option value="">SELECT CITY</option>
-                          <option value="Cochin">Cochin</option>
-                          <option value="Mangalore">Mangalore</option>
-                          <option value="Mysore">Mysore</option>
-                          <option value="Nagpur">Nagpur</option>
-                          <option value="Pune">Pune</option>
-                          <option value="Thiruvananthapuram">Thiruvananthapuram</option>
-                          <option value="Bangalore">Bangalore</option>
-                          <option value="Hyderabad">Hyderabad</option>
-                          
-                          
-                        </select>
-                </div>
-              </div>
-            </li>
+          <input type="hidden" name="hidden_cid" id="hidden_cid" />
+          <ul>            
             <li class="item-content item-input">      
                 <div class="item-inner">
                     <div class="item-title item-floating-label">MOBILE NUMBER</div>
                     <div class="item-input-wrap">
-                      <input type="number" placeholder="MOBILE NUMBER" name="mob_number" id="mob_number" required validate onkeyup="getCustInfo(this.value)">
+                      <input type="number" placeholder="MOBILE NUMBER" name="mob_number" id="mob_number" readonly>
                       <span class="input-clear-button"></span>
                     </div>
                 </div>
             </li>
-            <!--li class="item-content item-input">      
+            <li class="item-content item-input">      
                 <div class="item-inner">
                     <div class="item-title item-floating-label">NAME</div>
                     <div class="item-input-wrap">
@@ -77,12 +79,13 @@
                       <span class="input-clear-button"></span>
                     </div>
                 </div>
-            </li-->
+            </li>
+
             <li class="item-content item-input">
                 <div class="item-inner">
                     <div class="item-input-wrap">
-                        <a href="#" class="md-only col button color-signup text-white no-radius mt-p-5" onclick="sendingPassOTP()">SIGN UP</a> 
-                        <a href="#" class="ios-only col button color-signup text-white no-radius mt-p-5 w-75 new-wd" onclick="sendingPassOTP()">SIGN UP</a>  
+                        <a href="#" class="md-only col button color-signup text-white no-radius mt-p-5" onclick="updateProfile()">UPDATE PROFILE</a> 
+                        <a href="#" class="ios-only col button color-signup text-white no-radius mt-p-5 w-75 new-wd" onclick="updateProfile()">UPDATE PROFILE</a>  
                     </div>
                 </div>
             </li>

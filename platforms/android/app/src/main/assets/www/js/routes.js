@@ -39,6 +39,11 @@ var routes = [
     url: 'changepwd.html',
     name: 'changepwd',
   },
+  {
+    path: '/profile/',
+    url: './profile.html',
+    name: 'profile',
+  },
  /*{
       path: '/bookride/',
       url: './bookride.html',
