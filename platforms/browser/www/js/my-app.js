@@ -1025,7 +1025,8 @@ function rideHistoryPage(){
         if(response){  
          // console.log(response);
           var upcomingride_json_array = $.parseJSON(response);
-          var json_upcmride = upcomingride_json_array.upcomingrides; 
+          var json_upcmride = upcomingride_json_array.upcomingrides;
+          console.log("json_upcmride-------"+upcomingride_json_array) 
           var upcmridedata='';
           $(".tab-1").append('<span class="bgstyle badge color-green">'+json_upcmride.length+'</span>');
           //alert(json_upcmride.length+"length");
@@ -1049,7 +1050,8 @@ function rideHistoryPage(){
             //if(status_id!= null && status_id == 7) {
             //if(status_id!= null && status_id == call_status_id) {
             if(terminated_id==null && status_id == call_status_id) {
-             var pnrno=json_upcmride[i].id;
+             //var pnrno=json_upcmride[i].id; // OLD //
+             var pnrno=json_upcmride[i].celcabs_pickup_id; // NEW //
              //alert(pnrno);
               var driver_detbtn="<button onclick='getDriver("+pnrno+","+sess_cust+")' class='col button button-small button-outline fs-8 text-drvdet-btn fs-8 border-drvdet-btn drvbtn ml-20 login-screen-open' data-login-screen='.login-screen'>DRIVER DETAILS</button>";
             }else{
@@ -1057,7 +1059,9 @@ function rideHistoryPage(){
               var driver_detbtn='';
             }
             if(status_id==null && call_status_id == terminated_id){ 
-              var pnrno=json_upcmride[i].id;
+              //var pnrno=json_upcmride[i].id; // OLD //
+             var pnrno=json_upcmride[i].celcabs_pickup_id; // NEW //
+             //alert(pnrno);
               //alert(pnrno);
               
               //onclick='getPayment("+pnrno+","+sess_cust+")'
@@ -1204,9 +1208,14 @@ function getPayment(pnrno,sess_cust){
 
 }
 function getDriver(pnrno,sess_cust){
+
   var sess_city = window.localStorage.getItem("session_city");
   var pushnotification_url = base_url+"appcontroller/send_enroute_push";
   var driverdetail_url = base_url+"appcontroller/getDriverdetail";
+
+  //alert("sess_city--" +sess_city);
+  //alert("pnrno--" +pnrno);
+  //alert("sess_cust--" +sess_cust);
   $.ajax({ 
     'type':'POST', 
     'url':pushnotification_url,
