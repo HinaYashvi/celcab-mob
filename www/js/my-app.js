@@ -52,47 +52,37 @@ var base_url = 'http://182.18.160.210/mobileapp_celcabs/';   // LIVE SERVER //
 
 $( document ).ready(function() {  
     document.addEventListener("deviceready", checkStorage, false); 
-    //document.addEventListener("backbutton", onBackKeyDown, false);
+    document.addEventListener("backbutton", onBackKeyDown, false);
 });
 
-    
-/*function onBackKeyDown() {
-  //console.log("back key pressed"); 
-  alert("in back key");
-  //var view = app.views.current;
-  //console.log (app.view.name);
-  //var page = app.getCurrentView().activePage;
-  //var page = app.views.main.router.activePage;alert("page---"+page);
-  //var page=app.getCurrentView().activePage; 
-  //app.hidePreloader(); 
+function onBackKeyDown() { 
   
-  
-
-
-  /*if(data.name=="index"){  
-    app.confirm('Do you want to Exit !', function () {
+  if(app.views.main.router.history.length==2){
+    //alert("in if"); 
+    app.dialog.confirm('Do you want to Exit ?', function () {
       navigator.app.clearHistory(); navigator.app.exitApp();
     });
   }else{ 
+    //alert("in else");
     $$(".back").click();
-  }*/
-//}
+  }
+}
 
-function onConfirmExit(button) {
+/*function onConfirmExit(button) {
     if(button==2){ //If User select a No, then return back;
         return;
     }else{
         //navigator.app.clearHistory(); 
         navigator.app.exitApp(); // If user select a Yes, quit from the app.
     }
-}
+}*/
 function checkStorage(){  
   checkConnection();  
   var sess_mobilenum = window.localStorage.getItem("session_mobilenum");
-  document.addEventListener("backbutton", function (e) {
+  /*document.addEventListener("backbutton", function (e) {
     e.preventDefault(); 
     navigator.notification.confirm("Do you want to Exit ?", onConfirmExit, "Exit Application");
-  }, false );
+  }, false );*/
   if(sess_mobilenum==null)  
   {
     //mainView.loadPage("index.html");
