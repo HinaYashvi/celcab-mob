@@ -221,6 +221,7 @@ function getCustInfo(mob_number){
         var json_arr = json.getCust[0];
         //if(response!=''){
           if(json_arr!=undefined){  
+            alert("old registration");
             window.localStorage.setItem("reg_custid", json.getCust[0].id);
             $(".item-floating-label").css('display','none');      
             $("#cust_name").val(json.getCust[0].customer_name);
@@ -228,7 +229,7 @@ function getCustInfo(mob_number){
             $("#gender").val(json.getCust[0].gender);
             $("#hidden_ctype").val("oldcust");
           }else{
-            //console.log("new registration here");
+            alert("new registration here");
             $(".item-floating-label").css('display','block');      
             $("#cust_name").val('');
             $("#emailid").val('');
@@ -252,21 +253,10 @@ function sendingPassOTP(){
     var mob_number = $("#mob_number").val();
     var hidden_ctype=$("#hidden_ctype").val();     
     var url=base_url+'appcontroller/getPassOTP';
-    /*$.ajax({
-        'type':'POST', 
-        'url':url,
-        'data':{'mob_number':mob_number,'city':sess_city},
-        success:function(response){ 
-          console.log(response);
-          if(response){
-            //alert(response+"@@@@@");
-           // app.router.navigate('/verifyotp/');
-          }
-        }
-    });*/
-
+    alert(hidden_ctype);
     if(hidden_ctype == 'newcust'){
       var signupForm = $(".signupForm").serialize();
+      alert(signupForm);
       var url=base_url+'appcontroller/registerCustomer'; 
       $.ajax({
         'type':'POST', 
@@ -1374,7 +1364,7 @@ $$(document).on('page:init', '.page[data-name="profile"]', function (e) {
             if(json.getCustinfo[0].email!=null || json.getCustinfo[0].email!=undefined){
              $("#emailid").val(json.getCustinfo[0].email);
             }else{
-              $("#emailid").val('');
+              $("#emailid").show();
             }
             $("#gender").val(json.getCustinfo[0].gender);      
             $("#hidden_cid").val(json.getCustinfo[0].id);      

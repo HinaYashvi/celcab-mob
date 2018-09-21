@@ -341,6 +341,9 @@ input[readonly] {
 	/*color:#fff;*/
 	border: 2px solid #233761!important;
 }
+ 
+
+
 // ----------------------------- RESPONSIVE -------------------------- //
 @media only screen and (max-width: 645px) and (min-width: 635px){
 .btime{
