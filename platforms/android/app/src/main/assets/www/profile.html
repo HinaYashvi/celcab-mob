@@ -3,33 +3,17 @@
     <div class="navbar-inner sliding">
       <div class="left">
         <a href="#" class="link back">
-          <i class="f7-icons color-white">arrow_left</i>
-          <!--span class="ios-only">Back</span-->
+          <i class="f7-icons color-white">arrow_left</i>          
         </a>
       </div>
       <div class="title letterspace">MY PROFILE</div>
       <div class="right">
-        <a href="#" class="link popover-open profilepg" data-popover=".popover-links4" onclick="showbackdrop()">
-          <i class="f7-icons color-white">more_vertical_fill</i>
-          <!--span class="ios-only">Back</span--> 
-        </a>
-      </div>
-       
+        <a class="link panel-open" href="#" data-panel="left" > 
+          	<i class="f7-icons size-22 orange-text leftbars">bars</i>
+          </a>
+      </div>       
     </div>
-  </div>
-
-  <div class="popover popover-links4">
-    <div class="popover-inner">
-      <div class="list">
-        <ul>           
-          <li><a class="list-button item-link" href="#" onclick="changePwd()">Change Password</a></li>
-          <li><a class="list-button item-link" href="#" onclick="BookRide()">Book Ride</a></li>
-          <li><a class="list-button item-link" href="#" onclick="gotoRideHistory()">Ride History</a></li>
-          <li><a class="list-button item-link" href="#" onclick="logOut()">Logout</a></li>
-        </ul>
-      </div>
-    </div> 
-  </div>
+  </div>  
 
   <div class="page-content">   
     <div class="block block-strong no-hairlines">
@@ -71,12 +55,12 @@
               </div>
             </li>
             
-            <li class="item-content item-input">      
-                <div class="item-inner">
-                    <div class="item-title item-floating-label">EMAIL ID</div>
+            <li class="item-content item-input"> 
+              <div class="item-title item-floating-label">EMAIL ID</div>   
+                <div class="item-inner">                    
                     <div class="item-input-wrap">
-                      <input type="text" placeholder="EMAIL ID" required validate name="emailid" id="emailid">
-                      <span class="input-clear-button"></span>
+                      <input type="text" placeholder="EMAIL ID" name="emailid" id="emailid">
+                      <span class="input-clear-button"></span>  
                     </div> 
                 </div>
             </li>

@@ -51,6 +51,9 @@
     },
     "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "com.phonegap.celcabs"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.phonegap.celcabs"
     }
   },
   "dependent_plugins": {}

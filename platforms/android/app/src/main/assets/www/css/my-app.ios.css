@@ -1,5 +1,10 @@
-body{
+/*body{
 	font-family: Arial!important;
+}*/
+body{
+	font-family: 'Ubuntu'!important;
+	font-style: normal;
+	font-weight: 400;
 }
 .ios .page {
     background: #fff!important;
@@ -52,6 +57,9 @@ body{
 }
 .ml-5{
 	margin-left: 5%!important;
+}
+.ml-12{
+	margin-left: 12%!important;
 }
 .ml-8{
 	margin-left: 8%!important;
@@ -361,10 +369,21 @@ i.icon{
 input[readonly] {
     background-color: #ece7e7;
 }
-
+.panelleft{
+	color:#fff;
+	background:#233671;
+	text-transform:uppercase;
+}
+#borderDiv{
+    border-bottom: 1px solid #CF1B42!important;
+    margin-top: 10px;
+}
 /*.ios .list .item-content{
 	border-bottom: 1px dashed darkgrey!important;
 }*/
+.p-5{
+	padding: 5%!important;
+}
 // ----------------------------- RESPONSIVE -------------------------- //
 @media only screen and (max-width: 645px) and (min-width: 635px)   {
 .btime{
