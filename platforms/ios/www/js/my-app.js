@@ -51,7 +51,8 @@ function checkStorage(){
   if(sess_mobilenum==null){
     app.router.navigate('/');
   }else{
-    app.router.navigate('/bookride/'); 
+   // app.router.navigate('/bookride/'); 
+   app.router.navigate('/ridehistory/'); 
   } 
 }
 // --------------------------- C H E C K  I N T E R N E T  C O N N E C T I O N --------------------- //
@@ -279,7 +280,7 @@ function verifyOTP(){
                   var OTPVerified=window.localStorage.setItem("OTPVerified", Verified);
                   if(sess_cust!=null && Verified == 'Verified'){                    
                     app.dialog.alert("OTP verification is done.Please Login using password sent with OTP.");
-                    app.router.navigate('/index/');
+                    app.router.navigate('/');
                   }else{
                     //alert("no notification");
                   }
@@ -326,7 +327,7 @@ function checklogin(){
               //var json = $.parseJSON(data);  
               window.localStorage.setItem("session_custname",json.loggedin_user[0].customer_name);
               window.localStorage.setItem("session_custid",json.loggedin_user[0].id);
-              app.router.navigate('/bookride/');
+              app.router.navigate('/bookride/');              
               window.localStorage.removeItem("reg_custid");
               //window.localStorage.removeItem("OTPVerified"); 
             }else{
@@ -374,8 +375,8 @@ $$(document).on('page:init', '.page[data-name="bookride"]', function (e) {
     $('#minutes').html(minsdata);
   }
   $("#veh_count").val(1);
-  var url=base_url+'appcontroller/getAll_Location';
-  $.ajax({
+   /* var url=base_url+'appcontroller/getAll_Location';
+   $.ajax({
       'type':'POST', 
       'url':url,
       'data':{'city':sess_city},
@@ -384,6 +385,7 @@ $$(document).on('page:init', '.page[data-name="bookride"]', function (e) {
         var json_locarr = json_array.locations;
         var pickupdata='';
         pickupdata='<option value="">PICK UP FROM</option>';
+        //console.log(json_locarr.length);
         for(var i=0;i<json_locarr.length;i++){
           var locname=json_locarr[i].area +" "+ json_locarr[i].city;
           pickupdata +='<option value='+json_locarr[i].id+'>'+locname+'</option>';
@@ -398,7 +400,33 @@ $$(document).on('page:init', '.page[data-name="bookride"]', function (e) {
           $('#dropoffto').html(dropoffdata);
         }
       }
-  });  
+  }); */
+                  //var names = [];
+                  var pickupdata='';
+                  pickupdata='<option value="">PICK UP FROM</option>';
+                  
+var storedNames = JSON.parse(localStorage.getItem("locations"));
+
+                  //var storedNames = JSON.parse(localStorage.getItem("locations"));
+                  console.log(storedNames);
+                  /*for(var i = 0; i < storedNames.length; i++) {
+                      var obj = storedNames[i];
+                      var locname=obj.area +" "+ obj.city;
+                      alert("locname::"+locname);
+                      pickupdata +='<option value='+obj.id+'>'+locname+'</option>';
+                      //$('#pickupfrom').html(pickupdata);
+                      //console.log(obj.id);
+                  }*/
+                  /*for (var key in storedNames) {
+                     //if (storedNames.hasOwnProperty(key)) {
+                        var obj = storedNames[i];
+                        var locname=obj.area +" "+ obj.city;
+                        pickupdata +='<option value='+obj.id+'>'+locname+'</option>';
+                        $('#pickupfrom').html(pickupdata);
+                     //}
+                  }*/
+
+
   var url_vtype = base_url+'appcontroller/getAll_vehclass';
   $.ajax({
       'type':'POST', 
@@ -880,5 +908,5 @@ function logOut(){
   window.localStorage.removeItem("session_custname"); 
   window.localStorage.removeItem("session_mobilenum");
   window.localStorage.removeItem("OTPVerified");
-  app.router.navigate('/index/');
+  app.router.navigate('/');
 }
